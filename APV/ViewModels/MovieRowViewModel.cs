@@ -1,5 +1,7 @@
 ﻿using APV.CoreBusiness;
+using APV.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,5 +25,17 @@ namespace APV.ViewModels
             MovieList = new ObservableCollection<Movie>(movieList);
         }
 
+        [RelayCommand]
+        public async void ShowMovieDetails(Movie movie)
+        {
+            if (movie is not null)
+            {
+                var parameters = new Dictionary<string, object>
+                {
+                    ["Movie"] = movie
+                };
+                await Shell.Current.GoToAsync(nameof(MovieDetailsPage), false, parameters);
+            }
+        }
     }
 }

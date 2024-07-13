@@ -48,6 +48,7 @@ namespace APV
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
+            mauiAppBuilder.Services.AddSingleton<MovieDetailsViewModel>();
 
             return mauiAppBuilder;
         }
@@ -57,6 +58,7 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<StorePage>();
             mauiAppBuilder.Services.AddSingleton<DownloadsPage>();
             mauiAppBuilder.Services.AddSingleton<SearchPage>();
+            mauiAppBuilder.Services.AddSingleton<MovieDetailsPage>();
 
             return mauiAppBuilder;
         }

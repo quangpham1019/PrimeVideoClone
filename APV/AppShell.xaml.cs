@@ -12,6 +12,8 @@ namespace APV
             Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));
             Routing.RegisterRoute(nameof(DownloadsPage), typeof(DownloadsPage));
             Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
+
+            Routing.RegisterRoute(nameof(MovieDetailsPage), typeof(MovieDetailsPage));
         }
     }
 }

@@ -36,5 +36,24 @@ namespace APV.Plugins
             List<Movie> movies = _movies.Where(m => m.Categories.Contains(movieCategory)).ToList();
             return Task.FromResult(movies);
         }
+
+        public Task<Movie> GetMovieById(int movieId)
+        {
+            Movie movieFromDb = _movies.FirstOrDefault(m => m.Id == movieId);
+
+            if (movieFromDb != null)
+            {
+                return Task.FromResult(new Movie
+                {
+                    Id = movieFromDb.Id,
+                    Title = movieFromDb.Title,
+                    Description = movieFromDb.Description,
+                    Background = movieFromDb.Background,
+                    Categories = new List<MovieCategory>(movieFromDb.Categories)
+                });
+            }
+
+            return null;
+        }
     }
 }

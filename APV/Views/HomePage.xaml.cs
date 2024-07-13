@@ -1,6 +1,5 @@
 using APV.CoreBusiness;
 using APV.ViewModels;
-using Java.Lang;
 
 namespace APV.Views;
 
