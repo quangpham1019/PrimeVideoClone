@@ -3,25 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:APV.ViewModels"
              xmlns:models="clr-namespace:APV.CoreBusiness"
+             xmlns:controls="clr-namespace:APV.Views.Controls"
              x:DataType="viewmodels:HomePageViewModel"
              x:Class="APV.Views.HomePage"
              Title="HomePage">
     <VerticalStackLayout>
-
-        <Label Text="{Binding MovieCategory}"></Label>
-        <CollectionView ItemsSource="{Binding MovieList}">
+        
+        <CollectionView ItemsSource="{Binding MovieRowList}"
+                        Margin="10">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="5"/>
             </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Movie">
-                    <Border StrokeShape="RoundRectangle 5"
-                            Stroke="Black"
-                            StrokeThickness="1">
-                        <Grid>
-                            <Label Text="{Binding Title}"></Label>
-                            <Label Text="{Binding Description}"></Label>
-                        </Grid>
+                <DataTemplate x:DataType="viewmodels:MovieRowViewModel">
+                    <Border>
+                        <controls:MovieRow MovieCategory="{Binding MovieCategory}"
+                                           MovieList="{Binding MovieList}"/>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

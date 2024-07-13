@@ -15,22 +15,33 @@ namespace APV.ViewModels
         private readonly IGetMovieListUseCase getMovieListUseCase;
 
         [ObservableProperty]
-        ObservableCollection<Movie> movieList;
-
-        [ObservableProperty]
-        public MovieCategory movieCategory;
+        ObservableCollection<MovieRowViewModel> movieRowList;
 
         public HomePageViewModel(IGetMovieListUseCase getMovieListUseCase)
         {
             this.getMovieListUseCase = getMovieListUseCase;
-            MovieList = new ObservableCollection<Movie>();
-            _ = Task.Run(async () => await InitializeMovieList(MovieCategory));
+            MovieRowList = new ObservableCollection<MovieRowViewModel>();
+            Task.Run(InitializeMovieRowList);
         }
 
-        public async Task InitializeMovieList(MovieCategory movieCategory = default)
+        public async Task InitializeMovieRowList()
         {
-            List<Movie> moviesFromDB = await this.getMovieListUseCase.ExecuteAsync(movieCategory);
-            MovieList = new ObservableCollection<Movie>(moviesFromDB);
+            MovieRowList.Clear();
+
+            MovieCategory[] movieCategoryArr =
+            {
+                MovieCategory.All,
+                MovieCategory.ContinueWatching,
+                MovieCategory.Popular,
+                MovieCategory.Trending
+            };
+
+            foreach(MovieCategory movieCategory in movieCategoryArr)
+            {
+                List<Movie> moviesFromDb = await this.getMovieListUseCase.ExecuteAsync(movieCategory);
+                MovieRowList.Add(new MovieRowViewModel(movieCategory, moviesFromDb));
+            }
         }
+
     }
 }
