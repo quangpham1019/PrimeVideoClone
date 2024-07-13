@@ -1,4 +1,6 @@
-﻿using APV.Plugins;
+﻿using APV._UseCases;
+using APV._UseCases.Interfaces;
+using APV.Plugins;
 using APV.UseCases;
 using APV.UseCases.Interfaces;
 using APV.UseCases.PluginInterfaces;
@@ -30,11 +32,6 @@ namespace APV
             builder.Logging.AddDebug();
 #endif
 
-            //builder.Services.AddSingleton<IMovieRepository, APVInMemoryRepository>();
-            //builder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
-            //builder.Services.AddSingleton<HomePageViewModel>();
-            //builder.Services.AddSingleton<HomePage>();
-
             return builder.Build();
         }
 
@@ -42,6 +39,7 @@ namespace APV
         {
             mauiAppBuilder.Services.AddSingleton<IMovieRepository, APVInMemoryRepository>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
+            mauiAppBuilder.Services.AddSingleton<IGetMovieUseCase, GetMovieUseCase>();
 
             return mauiAppBuilder;
         }

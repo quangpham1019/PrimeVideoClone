@@ -26,13 +26,13 @@ namespace APV.ViewModels
         }
 
         [RelayCommand]
-        public async void ShowMovieDetails(Movie movie)
+        public async void ShowMovieDetails(Movie selectedMovie)
         {
-            if (movie is not null)
+            if (selectedMovie is not null)
             {
                 var parameters = new Dictionary<string, object>
                 {
-                    ["Movie"] = movie
+                    ["MovieId"] = selectedMovie.Id
                 };
                 await Shell.Current.GoToAsync(nameof(MovieDetailsPage), false, parameters);
             }
