@@ -13,6 +13,7 @@ namespace APV.ViewModels
     public partial class HomePageViewModel : ViewModel
     {
         private readonly IGetMovieListUseCase getMovieListUseCase;
+        MovieCategory[] MovieCategories { get; set; }
 
         [ObservableProperty]
         ObservableCollection<MovieRowViewModel> movieRowList;
@@ -20,7 +21,15 @@ namespace APV.ViewModels
         public HomePageViewModel(IGetMovieListUseCase getMovieListUseCase)
         {
             this.getMovieListUseCase = getMovieListUseCase;
-            MovieRowList = new ObservableCollection<MovieRowViewModel>();
+            MovieRowList = [];
+            MovieCategories =
+            [
+                MovieCategory.All,
+                MovieCategory.ContinueWatching,
+                MovieCategory.Popular,
+                MovieCategory.Trending
+            ];
+
             Task.Run(InitializeMovieRowList);
         }
 
@@ -28,26 +37,18 @@ namespace APV.ViewModels
         {
             MovieRowList.Clear();
 
-            MovieCategory[] movieCategoryArr =
-            {
-                MovieCategory.All,
-                MovieCategory.ContinueWatching,
-                MovieCategory.Popular,
-                MovieCategory.Trending
-            };
+            Task<List<Movie>>[] movieTasks = new Task<List<Movie>>[MovieCategories.Length];
 
-            Task<List<Movie>>[] movieTasks = new Task<List<Movie>>[movieCategoryArr.Length];
-
-            for (int i = 0; i < movieCategoryArr.Length; i++)
+            for (int i = 0; i < MovieCategories.Length; i++)
             {
-                movieTasks[i] = this.getMovieListUseCase.ExecuteAsync(movieCategoryArr[i]);
+                movieTasks[i] = this.getMovieListUseCase.ExecuteAsync(MovieCategories[i]);
             }
 
             List<Movie>[] movieListsFromDB = await Task.WhenAll(movieTasks);
 
-            for (int i = 0; i < movieCategoryArr.Length; i++)
+            for (int i = 0; i < MovieCategories.Length; i++)
             {
-                MovieRowList.Add(new MovieRowViewModel(movieCategoryArr[i], movieListsFromDB[i]));
+                MovieRowList.Add(new MovieRowViewModel(MovieCategories[i], movieListsFromDB[i]));
             }
 
         }
