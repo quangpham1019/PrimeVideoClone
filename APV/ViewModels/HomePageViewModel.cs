@@ -36,11 +36,20 @@ namespace APV.ViewModels
                 MovieCategory.Trending
             };
 
-            foreach(MovieCategory movieCategory in movieCategoryArr)
+            Task<List<Movie>>[] movieTasks = new Task<List<Movie>>[movieCategoryArr.Length];
+
+            for (int i = 0; i < movieCategoryArr.Length; i++)
             {
-                List<Movie> moviesFromDb = await this.getMovieListUseCase.ExecuteAsync(movieCategory);
-                MovieRowList.Add(new MovieRowViewModel(movieCategory, moviesFromDb));
+                movieTasks[i] = this.getMovieListUseCase.ExecuteAsync(movieCategoryArr[i]);
             }
+
+            List<Movie>[] movieListsFromDB = await Task.WhenAll(movieTasks);
+
+            for (int i = 0; i < movieCategoryArr.Length; i++)
+            {
+                MovieRowList.Add(new MovieRowViewModel(movieCategoryArr[i], movieListsFromDB[i]));
+            }
+
         }
 
     }
