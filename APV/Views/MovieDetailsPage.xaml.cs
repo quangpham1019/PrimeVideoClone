@@ -1,6 +1,4 @@
-using APV.CoreBusiness;
 using APV.ViewModels;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace APV.Views;
 

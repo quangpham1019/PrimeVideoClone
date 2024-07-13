@@ -8,9 +8,10 @@ namespace APV.CoreBusiness
 {
     public enum MovieCategory
     {
-        All,
         Popular,
+        TopRated,
         Trending,
-        ContinueWatching
+        Upcoming,
+        PlayingNow
     }
 }

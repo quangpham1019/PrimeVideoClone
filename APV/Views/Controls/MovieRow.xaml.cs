@@ -1,5 +1,4 @@
 using APV.CoreBusiness;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace APV.Views.Controls;
 
