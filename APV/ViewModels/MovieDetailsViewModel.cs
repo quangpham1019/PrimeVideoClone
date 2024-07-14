@@ -1,4 +1,5 @@
-﻿using APV._UseCases.Interfaces;
+﻿using APV._CoreBusiness;
+using APV._UseCases.Interfaces;
 using APV.CoreBusiness;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -7,7 +8,7 @@ namespace APV.ViewModels
     [QueryProperty(nameof(MovieId), "MovieId")]
     public partial class MovieDetailsViewModel : ViewModel
     {
-        private readonly IGetMovieUseCase getMovieUseCase;
+        private readonly IGetMovieDetailsUseCase getMovieUseCase;
 
         public int MovieId
         {
@@ -18,9 +19,9 @@ namespace APV.ViewModels
         }
 
         [ObservableProperty]
-        public Movie movie;
+        public MovieDetails movieDetails;
 
-        public MovieDetailsViewModel(IGetMovieUseCase getMovieUseCase)
+        public MovieDetailsViewModel(IGetMovieDetailsUseCase getMovieUseCase)
         {
             this.getMovieUseCase = getMovieUseCase;
 
@@ -28,7 +29,7 @@ namespace APV.ViewModels
 
         private async void InitializeMovieDetails(int movieId)
         {
-            Movie = await this.getMovieUseCase.ExecuteAsync(movieId);
+            MovieDetails = await this.getMovieUseCase.ExecuteAsync(movieId);
         }
     }
 }

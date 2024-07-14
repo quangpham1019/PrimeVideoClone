@@ -7,8 +7,13 @@
              x:DataType="viewModels:MovieDetailsViewModel"
              Title="MovieDetailsPage">
     <VerticalStackLayout>
+        <Image >
+            <Image.Source>
+                <UriImageSource Uri="{Binding MovieDetails.Backdrop_path}" />
+            </Image.Source>
+        </Image>
         <Label 
-            Text="{Binding Movie.Description}"
+            Text="{Binding MovieDetails.Original_title}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

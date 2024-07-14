@@ -30,8 +30,14 @@
                                                   CommandParameter="{Binding .}"/>
                         </Border.GestureRecognizers>
                         <VerticalStackLayout>
-                            <Label Text="{Binding Title}"></Label>
-                            <Label Text="{Binding Description}"></Label>
+                            <Image Aspect="AspectFill"
+                                   HeightRequest="150"
+                                   WidthRequest="120"
+                                   >
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding Thumbnail}"/>
+                                </Image.Source>
+                            </Image>
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

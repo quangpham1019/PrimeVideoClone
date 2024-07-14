@@ -1,4 +1,5 @@
 ﻿using APV._Plugins.InMemory;
+using APV._Plugins.WebAPI.Tmdb;
 using APV._UseCases;
 using APV._UseCases.Interfaces;
 using APV.UseCases;
@@ -37,9 +38,13 @@ namespace APV
 
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddSingleton<IMovieRepository, APVInMemoryRepository>();
+            //mauiAppBuilder.Services.AddSingleton<IMovieRepository, APVInMemoryRepository>();
+            mauiAppBuilder.Services.AddSingleton<IMovieRepository, APVTmdbRepository>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
-            mauiAppBuilder.Services.AddSingleton<IGetMovieUseCase, GetMovieUseCase>();
+            mauiAppBuilder.Services.AddSingleton<IGetMovieDetailsUseCase, GetMovieDetailsUseCase>();
+
+            mauiAppBuilder.Services.AddHttpClient(APVTmdbRepository.TmdbHttpClientName,
+    httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
 
             return mauiAppBuilder;
         }
@@ -47,6 +52,7 @@ namespace APV
         {
             mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
             mauiAppBuilder.Services.AddSingleton<MovieDetailsViewModel>();
+            mauiAppBuilder.Services.AddSingleton<MovieRowViewModel>();
 
             return mauiAppBuilder;
         }
