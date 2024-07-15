@@ -8,19 +8,16 @@
              x:Class="APV.Views.HomePage"
              Title="Home Page">
     <Grid Padding="5"
-          RowDefinitions="50, 50, *"
+          RowDefinitions="*"
           ColumnDefinitions="*"
           RowSpacing="5">
-        <HorizontalStackLayout Grid.Row="0">
-            <Label x:Name="label1" Text="Top menu bar 1"></Label>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Grid.Row="1">
-            <Label x:Name="label2" Text="Top menu bar 2"></Label>
-        </HorizontalStackLayout>
+
         <ScrollView x:Name="scrollView" 
                     Scrolled="ScrollView_Scrolled"
-                    Grid.Row="2">
+                    Grid.Row="0">
             <VerticalStackLayout>
+                <Label Text="test" TextColor="White"></Label>
+                <Label Text="test" TextColor="White"></Label>
                 <CarouselView ItemsSource="{Binding MovieCarousel}"
                               Margin="10"
                               HeightRequest="200">
@@ -56,5 +53,15 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
+
+        <VerticalStackLayout VerticalOptions="Start"
+                             Grid.Row="0">
+            <HorizontalStackLayout>
+                <Label x:Name="label1" Text="Top menu bar 1"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label x:Name="label2" Text="Top menu bar 2"></Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>
