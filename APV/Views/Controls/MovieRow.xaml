@@ -10,7 +10,7 @@
         MinimumHeightRequest="50"
         BindingContext="{x:Reference movieRow}">
         
-        <Label Text="{Binding MovieCategory}"
+        <Label Text="{Binding MovieRowHeading}"
                FontAttributes="Bold"
                FontSize="16"
                HorizontalTextAlignment="Start"

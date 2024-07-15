@@ -7,6 +7,7 @@ using APV.UseCases.Interfaces;
 using APV.UseCases.PluginInterfaces;
 using APV.ViewModels;
 using APV.Views;
+using APV.Views.Controls;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
@@ -42,6 +43,7 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<IMovieRepository, APVTmdbRepository>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieDetailsUseCase, GetMovieDetailsUseCase>();
+            mauiAppBuilder.Services.AddSingleton<IGetGenresUseCase, GetGenresUseCase>();
 
             mauiAppBuilder.Services.AddHttpClient(APVTmdbRepository.TmdbHttpClientName,
     httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));

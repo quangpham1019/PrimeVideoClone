@@ -18,9 +18,15 @@ namespace APV.UseCases
             this.movieRepository = movieRepository;
         }
 
+        // public async Task<List<Movie>> ExecuteAsync(string filterCategory, filter
         public async Task<List<Movie>> ExecuteAsync(MovieCategory movieCategory = default)
         {
-            return await this.movieRepository.GetMoviesByCategory(movieCategory);
+            return await movieRepository.GetMoviesByCategory(movieCategory);
+        }
+
+        public async Task<List<Movie>> ExecuteAsync(int genreId)
+        {
+            return await movieRepository.GetMoviesByGenre(genreId);
         }
     }
 }

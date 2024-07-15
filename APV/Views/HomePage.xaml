@@ -19,8 +19,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodels:MovieRowViewModel">
                     <Border>
-                        <controls:MovieRow MovieCategory="{Binding MovieCategory}"
-                                           MovieList="{Binding MovieList}"/>
+                        <controls:MovieRow MovieRowHeading="{Binding MovieRowHeading}"
+                                           MovieList="{Binding MovieList}" />
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

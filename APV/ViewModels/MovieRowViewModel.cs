@@ -12,12 +12,20 @@ namespace APV.ViewModels
         ObservableCollection<Movie> movieList;
 
         [ObservableProperty]
-        public MovieCategory movieCategory;
+        string movieRowHeading;
 
-        public MovieRowViewModel(MovieCategory movieCategory, List<Movie> movieList)
+        public MovieRowViewModel(List<Movie> movieList)
         {
-            MovieCategory = movieCategory;
             MovieList = new ObservableCollection<Movie>(movieList);
+        }
+
+        public MovieRowViewModel(MovieCategory movieCategory, List<Movie> movieList) : this(movieList)
+        {
+            MovieRowHeading = movieCategory.ToString();
+        }
+        public MovieRowViewModel(string genreName, List<Movie> movieList) : this(movieList)
+        {
+            MovieRowHeading = genreName;
         }
 
         [RelayCommand]

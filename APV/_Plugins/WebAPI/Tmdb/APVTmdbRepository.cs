@@ -42,37 +42,30 @@ namespace APV._Plugins.WebAPI.Tmdb
         
         public async Task<List<Movie>> GetMoviesByCategory(MovieCategory movieCategory)
         {
-            string getMoviesByCategoryUri = AppendApiKey($"{UrlByCategory[movieCategory]}");
-            MovieListQueryResponse tmdbMovieListQueryResponse = 
-                await HttpClient.GetFromJsonAsync<MovieListQueryResponse>(getMoviesByCategoryUri);
-
-            Result[] movieList = tmdbMovieListQueryResponse.results;
-
-            var mapperConfig = new MapperConfiguration(cfg => cfg.CreateMap<Result, Movie>());
-            var mapper = new Mapper(mapperConfig);
-
-            List<Movie> movies = [];
-            foreach (Result tmdbMovie in movieList)
+            if (movieCategory == default)
             {
-                movies.Add(mapper.Map<Movie>(tmdbMovie));
+                return null;
             }
+            string getMoviesByCategoryUri = AppendApiKey($"{UrlByCategory[movieCategory]}");
 
-            return movies;
+            List<Movie> movieList = await GetQueryResponseAndMapToMovie(getMoviesByCategoryUri);
+            
+            return movieList;
         }
         public async Task<List<Genre>> GetGenres()
         {
             string getGenresUri = AppendApiKey(TmdbURLs.GetMovieGenres);
 
-            List<Genre> movieGenres = await HttpClient.GetFromJsonAsync<List<Genre>>(getGenresUri);
+            var movieGenres = await HttpClient.GetFromJsonAsync<GenresWrapper>(getGenresUri);
 
-            return movieGenres;
+            return movieGenres.Genres.ToList();
         }
 
         public async Task<List<Movie>> GetMoviesByGenre(int genreId)
         {
             string getMoviesByGenreUri = AppendApiKey(TmdbURLs.GetMoviesByGenre(genreId));
 
-            List<Movie> movieList = await HttpClient.GetFromJsonAsync<List<Movie>>(getMoviesByGenreUri);
+            List<Movie> movieList = await GetQueryResponseAndMapToMovie(getMoviesByGenreUri);
 
             return movieList;
         }
@@ -80,6 +73,23 @@ namespace APV._Plugins.WebAPI.Tmdb
         private static string AppendApiKey(string uri)
         {
             return uri + $"&api_key={ApiKey}";
+        }
+
+        private class GenresWrapper
+        {
+            public IEnumerable<Genre> Genres { get; set; }
+        }
+
+        async Task<List<Movie>> GetQueryResponseAndMapToMovie(string uri)
+        {
+            MovieListQueryResponse tmdbMovieListQueryResponse = 
+                await HttpClient.GetFromJsonAsync<MovieListQueryResponse>(uri);
+
+            Result[] resultArr = tmdbMovieListQueryResponse.results;
+
+            List<Movie> movieList = TmdbMapper.MapResultArrToMovieList(resultArr);
+
+            return movieList;
         }
     }
 }
