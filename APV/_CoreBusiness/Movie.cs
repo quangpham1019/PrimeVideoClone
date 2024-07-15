@@ -22,7 +22,9 @@ namespace APV.CoreBusiness
         public bool Video { get; set; }
         public double Vote_average { get; set; }
         public int Vote_count { get; set; }
-        public string Thumbnail => $"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{Poster_path ?? Backdrop_path}";
+        public string CarouselImage => $"https://image.tmdb.org/t/p/w780{Poster_path}";
+        public string BackgroundImage => $"https://image.tmdb.org/t/p/original{Backdrop_path}";
+        public string Thumbnail => $"https://image.tmdb.org/t/p/w600_and_h900_bestv2{Poster_path ?? Backdrop_path}";
         public List<MovieCategory> Categories { get; set; }
     }
 }

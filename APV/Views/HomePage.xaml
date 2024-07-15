@@ -6,24 +6,55 @@
              xmlns:controls="clr-namespace:APV.Views.Controls"
              x:DataType="viewmodels:HomePageViewModel"
              x:Class="APV.Views.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        
-        <CollectionView ItemsSource="{Binding MovieRowList}"
-                        Margin="10">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="5"/>
-            </CollectionView.ItemsLayout>
+             Title="Home Page">
+    <Grid Padding="5"
+          RowDefinitions="50, 50, *"
+          ColumnDefinitions="*"
+          RowSpacing="5">
+        <HorizontalStackLayout Grid.Row="0">
+            <Label x:Name="label1" Text="Top menu bar 1"></Label>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Label x:Name="label2" Text="Top menu bar 2"></Label>
+        </HorizontalStackLayout>
+        <ScrollView x:Name="scrollView" 
+                    Scrolled="ScrollView_Scrolled"
+                    Grid.Row="2">
+            <VerticalStackLayout>
+                <CarouselView ItemsSource="{Binding MovieCarousel}"
+                              Margin="10"
+                              HeightRequest="200">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Movie">
+                            <VerticalStackLayout>
+                                <Image Aspect="AspectFit"
+                                       MaximumHeightRequest="500">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding BackgroundImage}" />
+                                    </Image.Source>
+                                </Image>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView> 
+            
+                <CollectionView ItemsSource="{Binding MovieRowList}"
+                                Margin="10">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           ItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewmodels:MovieRowViewModel">
-                    <Border>
-                        <controls:MovieRow MovieRowHeading="{Binding MovieRowHeading}"
-                                           MovieList="{Binding MovieList}" />
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodels:MovieRowViewModel">
+                            <Border>
+                                <controls:MovieRow MovieRowHeading="{Binding MovieRowHeading}"
+                                                   MovieList="{Binding MovieList}" />
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

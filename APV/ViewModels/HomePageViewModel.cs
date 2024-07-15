@@ -17,6 +17,9 @@ namespace APV.ViewModels
         [ObservableProperty]
         ObservableCollection<MovieRowViewModel> movieRowList;
 
+        [ObservableProperty]
+        ObservableCollection<Movie> movieCarousel;
+
         public HomePageViewModel(
             IGetMovieListUseCase getMovieListUseCase,
             IGetGenresUseCase getGenresUseCase)
@@ -25,6 +28,7 @@ namespace APV.ViewModels
             this.getGenresUseCase = getGenresUseCase;
 
             MovieRowList = [];
+            MovieCarousel = [];
             MovieCategories = Enum.GetValues(typeof(MovieCategory)).Cast<MovieCategory>().ToList();
 
             Task.Run(InitializeMovieRowList);
@@ -62,6 +66,14 @@ namespace APV.ViewModels
             {
                 if (movieListByCategory[i] is null)
                 {
+                    continue;
+                }
+                if (MovieCategories[i] == MovieCategory.Trending)
+                {
+                    foreach(Movie movie in movieListByCategory[i])
+                    {
+                        MovieCarousel.Add(movie);
+                    }
                     continue;
                 }
                 MovieRowList.Add(new MovieRowViewModel(MovieCategories[i], movieListByCategory[i]));
