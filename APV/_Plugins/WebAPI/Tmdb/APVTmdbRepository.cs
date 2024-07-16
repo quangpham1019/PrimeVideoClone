@@ -70,6 +70,15 @@ namespace APV._Plugins.WebAPI.Tmdb
             return movieList;
         }
 
+        public async Task<List<Movie>> GetSimilarMovies(int movieId)
+        {
+            string getSimilarMoviesUri = AppendApiKey(TmdbURLs.GetSimilar(movieId));
+
+            List<Movie> movieList = await GetQueryResponseAndMapToMovie(getSimilarMoviesUri);
+
+            return movieList;
+        }
+
         private static string AppendApiKey(string uri)
         {
             return uri + $"&api_key={ApiKey}";
@@ -91,5 +100,7 @@ namespace APV._Plugins.WebAPI.Tmdb
 
             return movieList;
         }
+
+
     }
 }

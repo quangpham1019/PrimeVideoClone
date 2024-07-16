@@ -16,7 +16,7 @@ public partial class HomePage : ContentPage
         this.homePageViewModel = homePageViewModel;
     }
 
-    private async void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+    private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
     {
 
         double curScrollY = e.ScrollY;

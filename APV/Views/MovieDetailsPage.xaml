@@ -6,15 +6,124 @@
              x:Class="APV.Views.MovieDetailsPage"
              x:DataType="viewModels:MovieDetailsViewModel"
              Title="MovieDetailsPage">
-    <VerticalStackLayout>
-        <Image >
-            <Image.Source>
-                <UriImageSource Uri="{Binding MovieDetails.Backdrop_path}" />
-            </Image.Source>
-        </Image>
-        <Label 
-            Text="{Binding MovieDetails.Original_title}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image Aspect="AspectFill">
+                <Image.Source>
+                    <UriImageSource Uri="{Binding MovieDetails.BackgroundImage}" />
+                </Image.Source>
+            </Image>
+            <Button Text="Play"></Button>
+            <Button Text="Download"></Button>
+
+            <Label 
+                Text="{Binding MovieDetails.Title}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <HorizontalStackLayout>
+                <Button Text="Trailer"></Button>
+                <Button Text="Add to Watchlist"></Button>
+                <Button Text="Like"></Button>
+                <Button Text="Not for me"></Button>
+                <Button Text="..."></Button>
+            </HorizontalStackLayout>
+            <Label Text="{Binding MovieDetails.Overview}"></Label>
+            
+            <!--genres-->
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="{Binding MovieDetails.Vote_average}"></Label>
+                
+                <!--release year-->
+                <!--<Label Text="{Binding MovieDetails.ReleaseDate}"></Label>-->
+                <Label Text="{Binding MovieDetails.Popularity}"></Label>
+
+                <HorizontalStackLayout>
+                    <Label Text="{Binding MovieDetails.Runtime}"></Label>
+                    <Label Text=" minutes"></Label>
+                </HorizontalStackLayout>
+
+            </HorizontalStackLayout>
+            
+            <!--languages/ audio / subtitles-->
+            <Grid>
+
+
+            </Grid>
+            
+            <VerticalStackLayout>
+                <Grid RowDefinitions="*"
+                      ColumnDefinitions="*, *"
+                      HorizontalOptions="Center">
+                    <VerticalStackLayout Grid.Row="0"
+                                         Grid.Column="0">
+                        <Border HeightRequest="5"
+                                 x:Name="relatedTabIndicator"></Border>
+                        <Label Text="Related"
+                               x:Name="relatedTabLabel">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TabLabel_Tapped"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                    
+                    <VerticalStackLayout Grid.Row="0"
+                                         Grid.Column="1">
+                        <Border HeightRequest="5"
+                                 x:Name="moreDetailsTabIndicator"></Border>
+                        <Label Text="More Details"
+                               x:Name="moreDetailsTabLabel">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TabLabel_Tapped"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+
+                </Grid>
+            </VerticalStackLayout>
+            
+            
+            <Border BackgroundColor="Black"
+                    StrokeThickness="0"
+                    x:Name="related">
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding SimilarMovies}"
+                                Wrap="Wrap"
+                                JustifyContent="SpaceBetween">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Movie">
+                            <Border StrokeShape="RoundRectangle 4"
+                                        BackgroundColor="Black"
+                                        StrokeThickness="0"
+                                        HeightRequest="135"
+                                        WidthRequest="50"
+                                        Margin="0, 0, 0, 5">
+                                <Image Source="{Binding Thumbnail}"
+                                           Aspect="Fill"/>
+                                <Border.GestureRecognizers>
+                                    <!--<TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=ChangeToThisMediaCommand}"
+                                                              CommandParameter="{Binding .}"/>-->
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </Border>            
+            
+            <Border StrokeThickness="0"
+                    x:Name="moreDetails">
+
+                <VerticalStackLayout>
+                    <Label Text="Genre" TextColor="DarkGray"></Label>
+                    <Label Text="Director" TextColor="DarkGray"></Label>
+                    <Label Text="Starring" TextColor="DarkGray"></Label>
+                    <Label Text="Supporting actors" TextColor="DarkGray"></Label>
+                    <Label Text="Studio" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

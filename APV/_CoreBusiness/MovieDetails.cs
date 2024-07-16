@@ -34,5 +34,6 @@ namespace APV._CoreBusiness
         public string Title { get; set; }
         public float Vote_average { get; set; }
         public int Vote_count { get; set; }
+        public string BackgroundImage => $"https://image.tmdb.org/t/p/w1280{Backdrop_path}";
     }
 }

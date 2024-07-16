@@ -82,5 +82,10 @@ namespace APV._Plugins.InMemory
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Movie>> GetSimilarMovies(int movieId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using APV._CoreBusiness;
 using APV._UseCases.Interfaces;
 using APV.CoreBusiness;
+using APV.UseCases.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace APV.ViewModels
@@ -8,7 +9,8 @@ namespace APV.ViewModels
     [QueryProperty(nameof(MovieId), "MovieId")]
     public partial class MovieDetailsViewModel : ViewModel
     {
-        private readonly IGetMovieDetailsUseCase getMovieUseCase;
+        private readonly IGetMovieDetailsUseCase getMovieDetailsUseCase;
+        private readonly IGetMovieListUseCase getMovieListUseCase;
 
         public int MovieId
         {
@@ -21,15 +23,22 @@ namespace APV.ViewModels
         [ObservableProperty]
         public MovieDetails movieDetails;
 
-        public MovieDetailsViewModel(IGetMovieDetailsUseCase getMovieUseCase)
-        {
-            this.getMovieUseCase = getMovieUseCase;
+        [ObservableProperty]
+        public List<Movie> similarMovies;
 
+        public MovieDetailsViewModel(
+            IGetMovieDetailsUseCase getMovieDetailsUseCase,
+            IGetMovieListUseCase getMovieListUseCase)
+        {
+            this.getMovieDetailsUseCase = getMovieDetailsUseCase;
+            this.getMovieListUseCase = getMovieListUseCase;
+            similarMovies = [];
         }
 
         private async void InitializeMovieDetails(int movieId)
         {
-            MovieDetails = await this.getMovieUseCase.ExecuteAsync(movieId);
+            MovieDetails = await this.getMovieDetailsUseCase.ExecuteAsync(movieId);
+            SimilarMovies = await this.getMovieListUseCase.ExecuteAsync(movieId, "similar");
         }
     }
 }

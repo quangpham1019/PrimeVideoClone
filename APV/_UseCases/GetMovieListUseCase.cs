@@ -28,5 +28,10 @@ namespace APV.UseCases
         {
             return await movieRepository.GetMoviesByGenre(genreId);
         }
+
+        public async Task<List<Movie>> ExecuteAsync(int movieId, string filter)
+        {
+            return await movieRepository.GetSimilarMovies(movieId);
+        }
     }
 }

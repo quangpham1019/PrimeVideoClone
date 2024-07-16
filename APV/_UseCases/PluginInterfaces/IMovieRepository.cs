@@ -10,5 +10,6 @@ namespace APV.UseCases.PluginInterfaces
         Task<List<Movie>> GetMoviesByCategory(MovieCategory movieCategory);
         Task<List<Genre>> GetGenres();
         Task<List<Movie>> GetMoviesByGenre(int genreId);
+        Task<List<Movie>> GetSimilarMovies(int movieId);
     }
 }
