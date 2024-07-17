@@ -122,6 +122,13 @@
                     <Label Text="Supporting actors" TextColor="DarkGray"></Label>
                     <Label Text="Studio" TextColor="DarkGray"></Label>
                     <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
+                    <Label Text="Content advisory" TextColor="DarkGray"></Label>
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>

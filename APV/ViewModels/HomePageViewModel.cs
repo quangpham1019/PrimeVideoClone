@@ -37,30 +37,12 @@ namespace APV.ViewModels
         public async Task InitializeMovieRowList()
         {
             MovieRowList.Clear();
-            
-            // get genres into an array
-            // initialize a task[] of List<Movie> for genres of size genres[]
-            // loop the genre[] to invoke getMovieListUseCase on "genre", add it to the task 
-            // loop the genre task arr to add movie list to MovieRowList
 
             List<Genre> genres = await getGenresUseCase.ExecuteAsync();
 
-            // initialize tasks of getting movies based on genres
-            Task<List<Movie>>[] movieListByGenreTasks = new Task<List<Movie>>[5];
-            for (int i = 0; i < movieListByGenreTasks.Length; i++)
-            {
-                movieListByGenreTasks[i] = getMovieListUseCase.ExecuteAsync(genres[i].Id);
-            }
+            List<Movie>[] movieListByCategory = await Task.WhenAll(InitializeGetMovieListByCategoryTasks());
+            List<Movie>[] movieListsByGenre = await Task.WhenAll(InitializeGetMovieListByGenreTasks(genres));
 
-            // initialize tasks of getting movies based on MovieCategory
-            Task<List<Movie>>[] movieListByCategoryTasks = new Task<List<Movie>>[MovieCategories.Count];
-            for (int i = 0; i < movieListByCategoryTasks.Length; i++)
-            {
-                movieListByCategoryTasks[i] = getMovieListUseCase.ExecuteAsync(MovieCategories[i]);
-            }
-
-            List<Movie>[] movieListByCategory = await Task.WhenAll(movieListByCategoryTasks);
-            List<Movie>[] movieListsByGenre = await Task.WhenAll(movieListByGenreTasks);
 
             for (int i = 0; i < movieListByCategory.Length; i++)
             {
@@ -85,5 +67,26 @@ namespace APV.ViewModels
 
         }
 
+        public Task<List<Movie>>[] InitializeGetMovieListByGenreTasks(List<Genre> genres)
+        {
+            Task<List<Movie>>[] movieListByGenreTasks = new Task<List<Movie>>[genres.Count];
+            for (int i = 0; i < movieListByGenreTasks.Length; i++)
+            {
+                movieListByGenreTasks[i] = getMovieListUseCase.ExecuteAsync(genres[i].Id);
+            }
+
+            return movieListByGenreTasks;
+        }
+
+        public Task<List<Movie>>[] InitializeGetMovieListByCategoryTasks()
+        {
+            Task<List<Movie>>[] movieListByCategoryTasks = new Task<List<Movie>>[MovieCategories.Count];
+            for (int i = 0; i < movieListByCategoryTasks.Length; i++)
+            {
+                movieListByCategoryTasks[i] = getMovieListUseCase.ExecuteAsync(MovieCategories[i]);
+            }
+
+            return movieListByCategoryTasks;
+        }
     }
 }
