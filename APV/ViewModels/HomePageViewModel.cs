@@ -9,8 +9,8 @@ namespace APV.ViewModels
 {
     public partial class HomePageViewModel : ViewModel
     {
-        private readonly IGetMovieListUseCase getMovieListUseCase;
-        private readonly IGetGenresUseCase getGenresUseCase;
+        public readonly IGetMovieListUseCase getMovieListUseCase;
+        public readonly IGetGenresUseCase getGenresUseCase;
 
         List<MovieCategory> MovieCategories { get; set; }
 
@@ -19,6 +19,10 @@ namespace APV.ViewModels
 
         [ObservableProperty]
         ObservableCollection<Movie> movieCarousel;
+
+        public HomePageViewModel()
+        {
+        }
 
         public HomePageViewModel(
             IGetMovieListUseCase getMovieListUseCase,
@@ -43,7 +47,6 @@ namespace APV.ViewModels
             List<Movie>[] movieListByCategory = await Task.WhenAll(InitializeGetMovieListByCategoryTasks());
             List<Movie>[] movieListsByGenre = await Task.WhenAll(InitializeGetMovieListByGenreTasks(genres));
 
-
             for (int i = 0; i < movieListByCategory.Length; i++)
             {
                 if (movieListByCategory[i] is null)
@@ -60,10 +63,16 @@ namespace APV.ViewModels
                 }
                 MovieRowList.Add(new MovieRowViewModel(MovieCategories[i], movieListByCategory[i]));
             }
-            for (int i = 0; i < movieListsByGenre.Length; i++)
+
+            List<Movie>[] movieListsByGenreToRender = new List<Movie>[5];
+            List<Genre> genresToRender = new List<Genre>();
+
+            for (int i =0; i < movieListsByGenreToRender.Length; i++ )
             {
-                MovieRowList.Add(new MovieRowViewModel(genres[i].Name, movieListsByGenre[i]));
+                movieListsByGenreToRender[i] = movieListsByGenre[i];
+                genresToRender.Add(genres[i]);    
             }
+            AddMovieListByGenreToMovieRowList(movieListsByGenreToRender, genresToRender);
 
         }
 
@@ -87,6 +96,14 @@ namespace APV.ViewModels
             }
 
             return movieListByCategoryTasks;
+        }
+
+        public void AddMovieListByGenreToMovieRowList(List<Movie>[] movieListByGenre, List<Genre> genres)
+        {
+            for (int i = 0; i < movieListByGenre.Length; i++)
+            {
+                MovieRowList.Add(new MovieRowViewModel(genres[i].Name, movieListByGenre[i]));
+            }
         }
     }
 }
