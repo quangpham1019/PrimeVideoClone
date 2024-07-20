@@ -54,13 +54,14 @@
             </Grid>
             
             <VerticalStackLayout>
-                <Grid RowDefinitions="*"
+                <Grid RowDefinitions="*, *"
                       ColumnDefinitions="*, *"
                       HorizontalOptions="Center">
                     <VerticalStackLayout Grid.Row="0"
                                          Grid.Column="0">
                         <Border HeightRequest="5"
-                                 x:Name="relatedTabIndicator"></Border>
+                                x:Name="relatedTabIndicator"></Border>
+
                         <Label Text="Related"
                                x:Name="relatedTabLabel">
                             <Label.GestureRecognizers>
@@ -68,7 +69,7 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </VerticalStackLayout>
-                    
+
                     <VerticalStackLayout Grid.Row="0"
                                          Grid.Column="1">
                         <Border HeightRequest="5"
@@ -87,7 +88,8 @@
             
             <Border BackgroundColor="Black"
                     StrokeThickness="0"
-                    x:Name="related">
+                    x:Name="related"
+                    HeightRequest="500">
 
                 <FlexLayout BindableLayout.ItemsSource="{Binding SimilarMovies}"
                                 Wrap="Wrap"
@@ -113,7 +115,8 @@
             </Border>            
             
             <Border StrokeThickness="0"
-                    x:Name="moreDetails">
+                    x:Name="moreDetails"
+                    HeightRequest="500">
 
                 <VerticalStackLayout>
                     <Label Text="Genre" TextColor="DarkGray"></Label>

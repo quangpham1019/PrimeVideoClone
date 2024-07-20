@@ -38,12 +38,18 @@ namespace APV.ViewModels
             Task.Run(InitializeMovieRowList);
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <returns></returns>
         public async Task InitializeMovieRowList()
         {
             MovieRowList.Clear();
 
+            int numOfGenresToRender = 5;
             List<Genre> genres = await getGenresUseCase.ExecuteAsync();
 
+            //
             List<Movie>[] movieListByCategory = await Task.WhenAll(InitializeGetMovieListByCategoryTasks());
             List<Movie>[] movieListsByGenre = await Task.WhenAll(InitializeGetMovieListByGenreTasks(genres));
 
@@ -53,18 +59,17 @@ namespace APV.ViewModels
                 {
                     continue;
                 }
+
                 if (MovieCategories[i] == MovieCategory.Trending)
                 {
-                    foreach(Movie movie in movieListByCategory[i])
-                    {
-                        MovieCarousel.Add(movie);
-                    }
+                    MovieCarousel = new ObservableCollection<Movie>(movieListByCategory[i]);
                     continue;
                 }
+
                 MovieRowList.Add(new MovieRowViewModel(MovieCategories[i], movieListByCategory[i]));
             }
 
-            List<Movie>[] movieListsByGenreToRender = new List<Movie>[5];
+            List<Movie>[] movieListsByGenreToRender = new List<Movie>[numOfGenresToRender];
             List<Genre> genresToRender = new List<Genre>();
 
             for (int i =0; i < movieListsByGenreToRender.Length; i++ )
@@ -76,6 +81,11 @@ namespace APV.ViewModels
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="genres"></param>
+        /// <returns></returns>
         public Task<List<Movie>>[] InitializeGetMovieListByGenreTasks(List<Genre> genres)
         {
             Task<List<Movie>>[] movieListByGenreTasks = new Task<List<Movie>>[genres.Count];
@@ -87,6 +97,10 @@ namespace APV.ViewModels
             return movieListByGenreTasks;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Task<List<Movie>>[] InitializeGetMovieListByCategoryTasks()
         {
             Task<List<Movie>>[] movieListByCategoryTasks = new Task<List<Movie>>[MovieCategories.Count];
@@ -98,6 +112,11 @@ namespace APV.ViewModels
             return movieListByCategoryTasks;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="movieListByGenre"></param>
+        /// <param name="genres"></param>
         public void AddMovieListByGenreToMovieRowList(List<Movie>[] movieListByGenre, List<Genre> genres)
         {
             for (int i = 0; i < movieListByGenre.Length; i++)

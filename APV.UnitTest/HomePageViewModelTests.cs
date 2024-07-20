@@ -11,6 +11,8 @@ namespace APV.UnitTest
 {
     public class HomePageViewModelTests
     {
+        
+
         [Fact]
         public void HomePageViewModelDefaultConstructorTest()
         {
@@ -87,7 +89,7 @@ namespace APV.UnitTest
             List<Movie>[] movieList =
             {
                 new List<Movie> {
-                    new Movie { Id=1, Title="Action movie 1" },
+                    new Movie { Id=1, Title="Action movie 1"},
                     new Movie { Id=2, Title="Action movie 2"},
                     new Movie { Id=3, Title="Action movie 3"}
                 },
@@ -109,7 +111,6 @@ namespace APV.UnitTest
                 new Genre{Id=2, Name="Comedy"},
                 new Genre{Id=3, Name="Adventure"}
             ];
-
 
             HomePageViewModel viewModel = new HomePageViewModel();
             viewModel.MovieRowList = [];

@@ -14,6 +14,7 @@ public partial class MovieDetailsPage : ContentPage
         this.movieDetailsViewModel = movieDetailsViewModel;
         BindingContext = movieDetailsViewModel;
         InitializeTabNameTabContentDict();
+        InitializeMovieDetailsPage();
 
     }
 
@@ -21,6 +22,12 @@ public partial class MovieDetailsPage : ContentPage
     {
         tabNameTabContentDict.Add(relatedTabLabel, new() { related, relatedTabIndicator });
         tabNameTabContentDict.Add(moreDetailsTabLabel, new() { moreDetails, moreDetailsTabIndicator });
+    }
+    private void InitializeMovieDetailsPage()
+    {
+        // set related tab indicator to visible, others to invisible
+        // set content of related tab to visible, others to invisible
+        TabLabel_Tapped(relatedTabLabel, new TappedEventArgs(null));
     }
 
     private void TabLabel_Tapped(object sender, TappedEventArgs e)
