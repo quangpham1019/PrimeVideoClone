@@ -57,7 +57,6 @@ namespace APV.ViewModels
             (List<Movie>[] movieListsByGenreToRender, List<Genre> genresToRender) = ReduceNumOfMovieListsByGenreToRender(numOfGenresToRender, movieListsByGenre, genres);
 
             AddMovieListByGenreToMovieRowList(movieListsByGenreToRender, genresToRender);
-
         }
 
         /// <summary>

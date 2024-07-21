@@ -35,6 +35,10 @@ namespace APV.ViewModels
             similarMovies = [];
         }
 
+        public MovieDetailsViewModel()
+        {
+        }
+
         private async void InitializeMovieDetails(int movieId)
         {
             MovieDetails = await this.getMovieDetailsUseCase.ExecuteAsync(movieId);
