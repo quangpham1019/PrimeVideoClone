@@ -14,10 +14,12 @@
 
         <ScrollView x:Name="scrollView" 
                     Scrolled="ScrollView_Scrolled"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    BackgroundColor="Black">
             <VerticalStackLayout>
-                <Label Text="test" TextColor="White"></Label>
-                <Label Text="test" TextColor="White"></Label>
+                <Label Text="" TextColor="White"></Label>
+                <Label Text="" TextColor="White"></Label>
+                <Label Text="" TextColor="White"></Label>
                 <CarouselView ItemsSource="{Binding MovieCarousel}"
                               Margin="10"
                               HeightRequest="200">
@@ -44,7 +46,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodels:MovieRowViewModel">
-                            <Border>
+                            <Border Stroke="Black">
                                 <controls:MovieRow MovieRowHeading="{Binding MovieRowHeading}"
                                                    MovieList="{Binding MovieList}" />
                             </Border>
@@ -57,10 +59,10 @@
         <VerticalStackLayout VerticalOptions="Start"
                              Grid.Row="0">
             <HorizontalStackLayout>
-                <Label x:Name="label1" Text="Top menu bar 1"></Label>
+                <Label x:Name="label1" Text="Top menu bar 1" TextColor="White"></Label>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <Label x:Name="label2" Text="Top menu bar 2"></Label>
+                <Label x:Name="label2" Text="Top menu bar 2" TextColor="White"></Label>
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </Grid>

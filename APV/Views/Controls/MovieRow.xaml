@@ -15,7 +15,7 @@
                FontSize="16"
                HorizontalTextAlignment="Start"
                Margin="10, 15, 0, 5"
-               />
+               TextColor="White"/>
         <CollectionView ItemsSource="{Binding MovieList}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
