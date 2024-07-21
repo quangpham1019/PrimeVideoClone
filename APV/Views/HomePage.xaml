@@ -7,19 +7,22 @@
              x:DataType="viewmodels:HomePageViewModel"
              x:Class="APV.Views.HomePage"
              Title="Home Page">
-    <Grid Padding="5"
-          RowDefinitions="*"
+    <Grid RowDefinitions="*"
           ColumnDefinitions="*"
           RowSpacing="5">
 
         <ScrollView x:Name="scrollView" 
                     Scrolled="ScrollView_Scrolled"
                     Grid.Row="0"
-                    BackgroundColor="Black">
+                    BackgroundColor="Black"
+                    Padding="5">
             <VerticalStackLayout>
-                <Label Text="" TextColor="White"></Label>
-                <Label Text="" TextColor="White"></Label>
-                <Label Text="" TextColor="White"></Label>
+                <VerticalStackLayout>
+                    <Label Text="" TextColor="White"></Label>
+                    <Label Text="" TextColor="White"></Label>
+                    <Label Text="" TextColor="White"></Label>
+                </VerticalStackLayout>
+
                 <CarouselView ItemsSource="{Binding MovieCarousel}"
                               Margin="10"
                               HeightRequest="200">
@@ -56,14 +59,90 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <VerticalStackLayout VerticalOptions="Start"
-                             Grid.Row="0">
-            <HorizontalStackLayout>
-                <Label x:Name="label1" Text="Top menu bar 1" TextColor="White"></Label>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label x:Name="label2" Text="Top menu bar 2" TextColor="White"></Label>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+        <!--<BoxView VerticalOptions="Start"
+                 Grid.Row="0" 
+                 HeightRequest="30"
+                 BackgroundColor="Transparent">
+            <BoxView.Shadow>
+                <Shadow Brush="Black"
+                        Radius="20"
+                        Offset="0, 20"/>
+            </BoxView.Shadow>
+        </BoxView>-->
+        <!--<BoxView VerticalOptions="Start"
+                 Grid.Row="0" 
+                 HeightRequest="20">
+            <BoxView.Shadow>
+                <Shadow Brush="Red"
+                        Radius="40"
+                        Offset="0, 40"/>
+            </BoxView.Shadow>
+        </BoxView>-->
+        <Frame VerticalOptions="Start"
+               BorderColor="Transparent"
+               Opacity=".8"
+               HeightRequest="100">
+            <Frame.Background>
+                <!-- StartPoint defaults to (0,0) -->
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="Black"
+                          Offset="0.7" />
+                    <GradientStop Color="Transparent"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
+
+        <!--TODO: Make dimension relative -->
+        <Grid VerticalOptions="Start"
+              Grid.Row="0"
+              HeightRequest="50"
+              Margin="20,10,20,0"
+              RowDefinitions="*, *">
+
+            <!--TODO: Make dimension relative -->
+            <!--TODO: Implement Icon for Logo, Cast, remove ads, account-->
+            <!--TODO: Implement Navigation for Logo, Cast, remove ads, account-->
+            <Grid Grid.Row="0"
+                  ColumnDefinitions=".2, *"
+                  x:Name="label1">
+                <HorizontalStackLayout>
+                    <Label Text="AVP Logo" FontAttributes="Bold" TextColor="White"></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       Spacing="5">
+                    <Label Text="Cast" FontAttributes="Bold" TextColor="White"></Label>
+                    <Label Text="RemoveAds" FontAttributes="Bold" TextColor="White"></Label>
+                    <Label Text="Account" FontAttributes="Bold" TextColor="White"></Label>
+                </HorizontalStackLayout>
+            </Grid>
+
+            <!--TODO: Make dimension relative -->
+            <!--TODO: Implement changing content for All, Movies, TV Shows -->
+            <!--TODO: Implement changing background color and text color on chosen -->
+            <Grid Grid.Row="1"
+                  x:Name="label2">
+                <HorizontalStackLayout HorizontalOptions="Start"
+                                       Spacing="10">
+                    <Border StrokeShape="RoundRectangle 40,40,40,40"
+                            Padding="15,3"
+                            StrokeThickness="0"
+                            BackgroundColor="White">
+                        <Label Text="All" FontAttributes="Bold" TextColor="Black"></Label>
+                    </Border>
+                    <Border StrokeShape="RoundRectangle 40,40,40,40"
+                            Padding="15,3"
+                            StrokeThickness="0">
+                        <Label Text="Movies" FontAttributes="Bold" TextColor="White"></Label>
+                    </Border>
+                    <Border StrokeShape="RoundRectangle 40,40,40,40"
+                            Padding="15,3"
+                            StrokeThickness="0">
+                        <Label Text="TV Shows" FontAttributes="Bold" TextColor="White"></Label>
+                    </Border>
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
     </Grid>
 </ContentPage>
