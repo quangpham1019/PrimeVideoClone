@@ -14,6 +14,10 @@ namespace APV.ViewModels
         [ObservableProperty]
         string movieRowHeading;
 
+        public MovieRowViewModel()
+        {
+        }
+
         public MovieRowViewModel(List<Movie> movieList)
         {
             MovieList = new ObservableCollection<Movie>(movieList);
