@@ -1,5 +1,4 @@
-﻿using APV._UseCases.Interfaces;
-using APV.CoreBusiness;
+﻿using APV.CoreBusiness;
 using APV.UseCases.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;

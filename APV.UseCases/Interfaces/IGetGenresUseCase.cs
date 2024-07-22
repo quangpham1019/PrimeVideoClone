@@ -1,6 +1,6 @@
 ﻿using APV.CoreBusiness;
 
-namespace APV._UseCases.Interfaces
+namespace APV.UseCases.Interfaces
 {
     public interface IGetGenresUseCase
     {

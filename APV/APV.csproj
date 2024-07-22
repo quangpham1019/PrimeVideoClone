@@ -72,6 +72,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
+	  <ProjectReference Include="..\APV.UseCases\APV.UseCases.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,8 +1,8 @@
 ﻿using APV.CoreBusiness;
-using APV._UseCases.Interfaces;
+using APV.UseCases.Interfaces;
 using APV.UseCases.PluginInterfaces;
 
-namespace APV._UseCases
+namespace APV.UseCases
 {
     public class GetGenresUseCase : IGetGenresUseCase
     {

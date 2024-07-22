@@ -1,13 +1,9 @@
-﻿using APV._Plugins.InMemory;
-using APV._Plugins.WebAPI.Tmdb;
-using APV._UseCases;
-using APV._UseCases.Interfaces;
+﻿using APV._Plugins.WebAPI.Tmdb;
 using APV.UseCases;
 using APV.UseCases.Interfaces;
 using APV.UseCases.PluginInterfaces;
 using APV.ViewModels;
 using APV.Views;
-using APV.Views.Controls;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
