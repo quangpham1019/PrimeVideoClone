@@ -73,7 +73,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
 	  <ProjectReference Include="..\APV.UseCases\APV.UseCases.csproj" />
-	  <ProjectReference Include="..\Plugins.DataStore.WebAPI.Tmdb\APV.Plugins.DataStore.WebAPI.Tmdb.csproj" />
+	  <ProjectReference Include="..\Plugins\APV.Plugins.DataStore.WebAPI.Tmdb\APV.Plugins.DataStore.WebAPI.Tmdb.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

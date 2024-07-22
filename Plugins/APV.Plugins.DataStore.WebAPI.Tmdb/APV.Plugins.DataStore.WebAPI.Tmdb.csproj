@@ -26,8 +26,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
-	  <ProjectReference Include="..\APV.UseCases\APV.UseCases.csproj" />
+	  <ProjectReference Include="..\..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
+	  <ProjectReference Include="..\..\APV.UseCases\APV.UseCases.csproj" />
 	</ItemGroup>
 
 </Project>
