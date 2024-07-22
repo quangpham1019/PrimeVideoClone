@@ -1,12 +1,6 @@
-﻿using APV._CoreBusiness;
-using APV._UseCases.Interfaces;
+﻿using APV._UseCases.Interfaces;
 using APV.CoreBusiness;
 using APV.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APV._UseCases
 {

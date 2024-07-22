@@ -1,14 +1,4 @@
-﻿using APV._CoreBusiness;
-using APV._UseCases.Interfaces;
-using APV.CoreBusiness;
-using APV.UseCases.Interfaces;
-using APV.ViewModels;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using APV.ViewModels;
 
 namespace APV.UnitTest
 {

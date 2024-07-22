@@ -1,9 +1,7 @@
-using APV._Plugins.WebAPI.Tmdb.Models;
 using APV._UseCases.Interfaces;
 using APV.CoreBusiness;
 using APV.UseCases.Interfaces;
 using APV.ViewModels;
-using FluentAssertions;
 using NSubstitute;
 using System.Collections.ObjectModel;
 

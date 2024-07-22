@@ -1,5 +1,4 @@
-﻿using APV._Plugins.WebAPI.Tmdb.Models;
-using APV._UseCases.Interfaces;
+﻿using APV._UseCases.Interfaces;
 using APV.CoreBusiness;
 using APV.UseCases.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;

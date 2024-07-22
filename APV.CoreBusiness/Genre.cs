@@ -1,4 +1,4 @@
-﻿namespace APV._Plugins.WebAPI.Tmdb.Models
+﻿namespace APV.CoreBusiness
 {
     public class Genre
     {

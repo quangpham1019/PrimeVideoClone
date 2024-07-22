@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:APV.CoreBusiness"
+             xmlns:models="clr-namespace:APV.CoreBusiness;assembly=APV.CoreBusiness"
              xmlns:viewModels="clr-namespace:APV.ViewModels"
              x:Name="movieRow"
              x:Class="APV.Views.Controls.MovieRow">

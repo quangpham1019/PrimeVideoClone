@@ -71,6 +71,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\Controls\MovieRow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

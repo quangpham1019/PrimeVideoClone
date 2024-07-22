@@ -1,11 +1,4 @@
-﻿using APV._Plugins.WebAPI.Tmdb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace APV._CoreBusiness
+﻿namespace APV.CoreBusiness
 {
     public class MovieDetails
     {
@@ -25,10 +18,11 @@ namespace APV._CoreBusiness
         public string Poster_path { get; set; }
         public ProductionCompany[] Production_companies { get; set; }
         public ProductionCountry[] Production_countries { get; set; }
+        public SpokenLanguage[] Spoken_languages { get; set; }
         public string ReleaseDate { get; set; }
         public int Revenue { get; set; }
         public int Runtime { get; set; }
-        public SpokenLanguage[] Spoken_languages { get; set; }
+
         public string Status { get; set; }
         public string Tagline { get; set; }
         public string Title { get; set; }

@@ -1,5 +1,4 @@
-﻿using APV._CoreBusiness;
-using APV.CoreBusiness;
+﻿using APV.CoreBusiness;
 
 namespace APV._UseCases.Interfaces
 {

@@ -1,6 +1,4 @@
-﻿using APV._CoreBusiness;
-using APV._Plugins.WebAPI.Tmdb.Models;
-using APV.CoreBusiness;
+﻿using APV.CoreBusiness;
 
 namespace APV.UseCases.PluginInterfaces
 {

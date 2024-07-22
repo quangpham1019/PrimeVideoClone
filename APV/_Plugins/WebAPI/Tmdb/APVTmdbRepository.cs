@@ -1,5 +1,4 @@
-﻿using APV._CoreBusiness;
-using APV._Plugins.WebAPI.Tmdb.Models;
+﻿using APV._Plugins.WebAPI.Tmdb.Models;
 using APV.CoreBusiness;
 using APV.UseCases.PluginInterfaces;
 using AutoMapper;
@@ -33,10 +32,8 @@ namespace APV._Plugins.WebAPI.Tmdb
 
             var tmdbMovieDetails = await HttpClient.GetFromJsonAsync<TmdbMovieDetails>(getMovieByIdUri);
 
-            var mapperConfig = new MapperConfiguration(cfg => cfg.CreateMap<TmdbMovieDetails, MovieDetails>());
-            var mapper = new Mapper(mapperConfig);
-
-            return mapper.Map<MovieDetails>(tmdbMovieDetails);
+            MovieDetails resultMovie = TmdbMapper.MapTmdbMovieDetailsToMovieDetails(tmdbMovieDetails);
+            return resultMovie;
         }
 
         
@@ -52,7 +49,7 @@ namespace APV._Plugins.WebAPI.Tmdb
             
             return movieList;
         }
-        public async Task<List<Genre>> GetGenres()
+        public async Task<List<CoreBusiness.Genre>> GetGenres()
         {
             string getGenresUri = AppendApiKey(TmdbURLs.GetMovieGenres);
 
@@ -86,7 +83,7 @@ namespace APV._Plugins.WebAPI.Tmdb
 
         private class GenresWrapper
         {
-            public IEnumerable<Genre> Genres { get; set; }
+            public IEnumerable<CoreBusiness.Genre> Genres { get; set; }
         }
 
         async Task<List<Movie>> GetQueryResponseAndMapToMovie(string uri)

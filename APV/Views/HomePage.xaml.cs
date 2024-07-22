@@ -1,7 +1,4 @@
-using APV.CoreBusiness;
 using APV.ViewModels;
-using Microsoft.Maui.Animations;
-using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace APV.Views;
 
