@@ -1,8 +1,8 @@
-﻿using APV._Plugins.WebAPI.Tmdb.Models;
-using APV.CoreBusiness;
+﻿using APV.CoreBusiness;
 using AutoMapper;
+using APV.Plugins.DataStore.WebAPI.Tmdb.Models;
 
-namespace APV._Plugins.WebAPI.Tmdb
+namespace APV.Plugins.DataStore.WebAPI.Tmdb
 {
     public static class TmdbMapper
     {

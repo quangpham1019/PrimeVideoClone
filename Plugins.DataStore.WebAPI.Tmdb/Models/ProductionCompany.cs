@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace APV._Plugins.WebAPI.Tmdb.Models
+﻿namespace APV.Plugins.DataStore.WebAPI.Tmdb.Models
 {
     public class ProductionCompany
     {

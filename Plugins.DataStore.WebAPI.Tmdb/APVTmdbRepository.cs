@@ -1,10 +1,9 @@
-﻿using APV._Plugins.WebAPI.Tmdb.Models;
-using APV.CoreBusiness;
+﻿using APV.CoreBusiness;
 using APV.UseCases.PluginInterfaces;
-using AutoMapper;
+using APV.Plugins.DataStore.WebAPI.Tmdb.Models;
 using System.Net.Http.Json;
 
-namespace APV._Plugins.WebAPI.Tmdb
+namespace APV.Plugins.DataStore.WebAPI.Tmdb
 {
     public class APVTmdbRepository : IMovieRepository
     {
@@ -49,7 +48,7 @@ namespace APV._Plugins.WebAPI.Tmdb
             
             return movieList;
         }
-        public async Task<List<CoreBusiness.Genre>> GetGenres()
+        public async Task<List<APV.CoreBusiness.Genre>> GetGenres()
         {
             string getGenresUri = AppendApiKey(TmdbURLs.GetMovieGenres);
 
@@ -83,7 +82,7 @@ namespace APV._Plugins.WebAPI.Tmdb
 
         private class GenresWrapper
         {
-            public IEnumerable<CoreBusiness.Genre> Genres { get; set; }
+            public IEnumerable<APV.CoreBusiness.Genre> Genres { get; set; }
         }
 
         async Task<List<Movie>> GetQueryResponseAndMapToMovie(string uri)

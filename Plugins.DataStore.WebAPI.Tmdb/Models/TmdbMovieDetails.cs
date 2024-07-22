@@ -1,4 +1,4 @@
-﻿namespace APV._Plugins.WebAPI.Tmdb.Models
+﻿namespace APV.Plugins.DataStore.WebAPI.Tmdb.Models
 {
     public class TmdbMovieDetails
     {

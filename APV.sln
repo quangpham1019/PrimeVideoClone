@@ -14,7 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APV.UnitTest", "APV.UnitTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APV.CoreBusiness", "APV.CoreBusiness\APV.CoreBusiness.csproj", "{E42F7BF6-1136-4747-8F0B-6514454BF314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APV.UseCases", "APV.UseCases\APV.UseCases.csproj", "{0E888144-027C-453C-998D-5C37B948085C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APV.UseCases", "APV.UseCases\APV.UseCases.csproj", "{0E888144-027C-453C-998D-5C37B948085C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{A32721FC-BB62-4761-B439-B4C38F2B1180}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APV.Plugins.DataStore.WebAPI.Tmdb", "Plugins.DataStore.WebAPI.Tmdb\APV.Plugins.DataStore.WebAPI.Tmdb.csproj", "{032B4A96-64BA-43D3-884A-24C9A8B73F41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,9 +44,16 @@ Global
 		{0E888144-027C-453C-998D-5C37B948085C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E888144-027C-453C-998D-5C37B948085C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E888144-027C-453C-998D-5C37B948085C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032B4A96-64BA-43D3-884A-24C9A8B73F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032B4A96-64BA-43D3-884A-24C9A8B73F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032B4A96-64BA-43D3-884A-24C9A8B73F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032B4A96-64BA-43D3-884A-24C9A8B73F41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{032B4A96-64BA-43D3-884A-24C9A8B73F41} = {A32721FC-BB62-4761-B439-B4C38F2B1180}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095E578E-CF4C-44EA-A6FD-6E8FF01924D1}

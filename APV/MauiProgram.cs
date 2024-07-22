@@ -1,11 +1,11 @@
-﻿using APV._Plugins.WebAPI.Tmdb;
-using APV.UseCases;
+﻿using APV.UseCases;
 using APV.UseCases.Interfaces;
 using APV.UseCases.PluginInterfaces;
 using APV.ViewModels;
 using APV.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using APV.Plugins.DataStore.WebAPI.Tmdb;
 
 namespace APV
 {

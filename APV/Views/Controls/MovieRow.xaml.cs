@@ -1,6 +1,4 @@
-using APV._Plugins.WebAPI.Tmdb.Models;
 using APV.CoreBusiness;
-using APV.ViewModels;
 
 namespace APV.Views.Controls;
 

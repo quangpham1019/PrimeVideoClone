@@ -1,4 +1,4 @@
-﻿namespace APV._Plugins.WebAPI.Tmdb
+﻿namespace APV.Plugins.DataStore.WebAPI.Tmdb
 {
     public class TmdbURLs
     {
