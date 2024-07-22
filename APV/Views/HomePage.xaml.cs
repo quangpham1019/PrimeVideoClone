@@ -6,6 +6,7 @@ public partial class HomePage : ContentPage
 {
     private readonly HomePageViewModel homePageViewModel;
     private double PrevScrollY { get; set; } = 0;
+
     public HomePage(HomePageViewModel homePageViewModel)
     {
         InitializeComponent();

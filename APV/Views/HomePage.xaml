@@ -23,14 +23,14 @@
                     <Label Text="" TextColor="White"></Label>
                 </VerticalStackLayout>
 
-                <CarouselView ItemsSource="{Binding MovieCarousel}"
-                              Margin="10"
-                              HeightRequest="200">
+                <CarouselView HeightRequest="{Binding DeviceDisplayInfo.Height}"
+                              WidthRequest="{Binding DeviceDisplayInfo.Width}"
+                              ItemsSource="{Binding MovieCarousel}"
+                              Margin="10">
                     <CarouselView.ItemTemplate>
                         <DataTemplate x:DataType="models:Movie">
-                            <VerticalStackLayout>
-                                <Image Aspect="AspectFit"
-                                       MaximumHeightRequest="500">
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Image Aspect="AspectFit">
                                     <Image.Source>
                                         <UriImageSource Uri="{Binding BackgroundImage}" />
                                     </Image.Source>
@@ -40,6 +40,8 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView> 
             
+                <!--TODO: Add carousel position indicator-->
+                
                 <CollectionView ItemsSource="{Binding MovieRowList}"
                                 Margin="10">
                     <CollectionView.ItemsLayout>
