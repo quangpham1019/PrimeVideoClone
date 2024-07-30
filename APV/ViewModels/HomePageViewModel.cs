@@ -1,6 +1,8 @@
 ﻿using APV.CoreBusiness;
 using APV.UseCases.Interfaces;
+using APV.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace APV.ViewModels
@@ -167,6 +169,10 @@ namespace APV.ViewModels
             }
         }
 
-        
+        [RelayCommand]
+        private async void GoToLoginPage()
+        {
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
     }
 }

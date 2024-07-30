@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{A327
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APV.Plugins.DataStore.WebAPI.Tmdb", "Plugins\APV.Plugins.DataStore.WebAPI.Tmdb\APV.Plugins.DataStore.WebAPI.Tmdb.csproj", "{21F8F354-67F4-4EB0-8A04-51D6CF4BDDD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APV.Plugins.DataStore.InMemoryUserDatabase", "APV.Plugins.DataStore.InMemoryUserDatabase\APV.Plugins.DataStore.InMemoryUserDatabase.csproj", "{FAB297F6-441A-477F-B105-ADD48E18BFB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,12 +50,17 @@ Global
 		{21F8F354-67F4-4EB0-8A04-51D6CF4BDDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F8F354-67F4-4EB0-8A04-51D6CF4BDDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F8F354-67F4-4EB0-8A04-51D6CF4BDDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAB297F6-441A-477F-B105-ADD48E18BFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB297F6-441A-477F-B105-ADD48E18BFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB297F6-441A-477F-B105-ADD48E18BFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB297F6-441A-477F-B105-ADD48E18BFB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21F8F354-67F4-4EB0-8A04-51D6CF4BDDD5} = {A32721FC-BB62-4761-B439-B4C38F2B1180}
+		{FAB297F6-441A-477F-B105-ADD48E18BFB6} = {A32721FC-BB62-4761-B439-B4C38F2B1180}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {095E578E-CF4C-44EA-A6FD-6E8FF01924D1}

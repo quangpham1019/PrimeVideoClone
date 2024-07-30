@@ -6,6 +6,7 @@ using APV.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using APV.Plugins.DataStore.WebAPI.Tmdb;
+using APV.Plugins.DataStore.InMemoryUserDatabase;
 
 namespace APV
 {
@@ -40,6 +41,8 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieDetailsUseCase, GetMovieDetailsUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetGenresUseCase, GetGenresUseCase>();
+            mauiAppBuilder.Services.AddSingleton<ILoginUseCase, LoginUseCase>();
+            mauiAppBuilder.Services.AddSingleton<IUserDatabase, APVInMemoryUserDatabase>();
 
             mauiAppBuilder.Services.AddHttpClient(APVTmdbRepository.TmdbHttpClientName,
     httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
@@ -51,7 +54,8 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<HomePageViewModel>();
             mauiAppBuilder.Services.AddSingleton<MovieDetailsViewModel>();
             mauiAppBuilder.Services.AddSingleton<MovieRowViewModel>();
-
+            mauiAppBuilder.Services.AddSingleton<LoginPageViewModel>();
+            
             return mauiAppBuilder;
         }
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
@@ -61,6 +65,7 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<DownloadsPage>();
             mauiAppBuilder.Services.AddSingleton<SearchPage>();
             mauiAppBuilder.Services.AddSingleton<MovieDetailsPage>();
+            mauiAppBuilder.Services.AddSingleton<LoginPage>();
 
             return mauiAppBuilder;
         }

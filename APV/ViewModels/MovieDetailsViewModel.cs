@@ -24,6 +24,7 @@ namespace APV.ViewModels
         [ObservableProperty]
         public List<Movie> similarMovies;
 
+        
         public MovieDetailsViewModel(
             IGetMovieDetailsUseCase getMovieDetailsUseCase,
             IGetMovieListUseCase getMovieListUseCase)

@@ -40,7 +40,13 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
-
+	
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-android'">
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<PublishTrimmed>False</PublishTrimmed>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -72,6 +78,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\APV.CoreBusiness\APV.CoreBusiness.csproj" />
+	  <ProjectReference Include="..\APV.Plugins.DataStore.InMemoryUserDatabase\APV.Plugins.DataStore.InMemoryUserDatabase.csproj" />
 	  <ProjectReference Include="..\APV.UseCases\APV.UseCases.csproj" />
 	  <ProjectReference Include="..\Plugins\APV.Plugins.DataStore.WebAPI.Tmdb\APV.Plugins.DataStore.WebAPI.Tmdb.csproj" />
 	</ItemGroup>
@@ -84,6 +91,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginFailedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginSuccessPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MovieDetailsPage.xaml">

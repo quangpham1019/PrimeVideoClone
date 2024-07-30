@@ -41,7 +41,8 @@
                 </CarouselView> 
             
                 <!--TODO: Add carousel position indicator-->
-                
+                <Button Text="Go to login page" Command="{Binding GoToLoginPageCommand}" />
+
                 <CollectionView ItemsSource="{Binding MovieRowList}"
                                 Margin="10">
                     <CollectionView.ItemsLayout>
