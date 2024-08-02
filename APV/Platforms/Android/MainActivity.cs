@@ -18,9 +18,9 @@ namespace APV
             {
                 try
                 {
-                    var currentAccount = await GoogleSignIn.GetSignedInAccountFromIntentAsync(data);
-                    ResultGoogleAuth?.Invoke(this, (currentAccount.Email != null, currentAccount));
-                    Toast.MakeText(this, $"Logged in as {currentAccount.DisplayName}", ToastLength.Long).Show();
+                    var curAccount = await GoogleSignIn.GetSignedInAccountFromIntentAsync(data);
+                    ResultGoogleAuth?.Invoke(this, (curAccount.Email != null, curAccount));
+                    Toast.MakeText(this, $"Logged in as {curAccount.DisplayName}", ToastLength.Long).Show();
                 }
                 catch (Exception ex)
                 {

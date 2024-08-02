@@ -7,22 +7,22 @@ namespace APV.Platforms.Android
 {
     public class GoogleAuthService : IGoogleAuthService
     {
-        private Activity _activity;
-        private TaskCompletionSource<UserDTO> _taskCompletionSource;
-        private GoogleSignInOptions _gso;
-        private GoogleSignInClient _googleSignInClient;
+        private Activity curActivity;
+        private TaskCompletionSource<UserDTO> taskCompletionSource;
+        private GoogleSignInOptions googleSignInOptions;
+        private GoogleSignInClient googleSignInClient;
         private Task<UserDTO> GoogleAuthentication
         {
-            get => _taskCompletionSource.Task;
+            get => taskCompletionSource.Task;
         }
 
         public GoogleAuthService()
         {
             // Get current activity
-            _activity = Platform.CurrentActivity;
+            curActivity = Platform.CurrentActivity;
 
             // Config Auth Option
-            _gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+            googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                             .RequestIdToken("892547391589-go8a8lip4vkcer0qrr33f2j0vsbm3r8q.apps.googleusercontent.com")
                             .RequestEmail()
                             .RequestId()
@@ -30,15 +30,15 @@ namespace APV.Platforms.Android
                             .Build();
 
             // Get client
-            _googleSignInClient = GoogleSignIn.GetClient(_activity, _gso);
+            googleSignInClient = GoogleSignIn.GetClient(curActivity, googleSignInOptions);
 
             MainActivity.ResultGoogleAuth += MainActivity_ResultGoogleAuth;
         }
 
         public Task<UserDTO> AuthenticateAsync()
         {
-            _taskCompletionSource = new TaskCompletionSource<UserDTO>();
-            _activity.StartActivityForResult(_googleSignInClient.SignInIntent, 9001);
+            taskCompletionSource = new TaskCompletionSource<UserDTO>();
+            curActivity.StartActivityForResult(googleSignInClient.SignInIntent, 9001);
 
             return GoogleAuthentication;
         }
@@ -46,8 +46,7 @@ namespace APV.Platforms.Android
         private void MainActivity_ResultGoogleAuth(object sender, (bool Success, GoogleSignInAccount Account) e)
         {
             if (e.Success)
-                // Set result of Task
-                _taskCompletionSource.SetResult(new UserDTO
+                taskCompletionSource.SetResult(new UserDTO
                 {
                     Email = e.Account.Email,
                     FullName = e.Account.DisplayName,
@@ -55,15 +54,14 @@ namespace APV.Platforms.Android
                     UserName = e.Account.GivenName
                 });
             else
-                // Set Exception
-                _taskCompletionSource.SetException(new Exception("Error"));
+                taskCompletionSource.SetException(new Exception("Error"));
         }
 
         public async Task<UserDTO> GetCurrentUserAsync()
         {
             try
             {
-                var user = await _googleSignInClient.SilentSignInAsync();
+                var user = await googleSignInClient.SilentSignInAsync();
                 return new UserDTO
                 {
                     Email = user.Email,
@@ -79,6 +77,6 @@ namespace APV.Platforms.Android
             }
         }
 
-        public Task LogoutAsync() => _googleSignInClient.SignOutAsync();
+        public Task LogoutAsync() => googleSignInClient.SignOutAsync();
     }
 }
