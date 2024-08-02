@@ -101,4 +101,22 @@
 	  <Folder Include="_Plugins\WebAPI\Tmdb\" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+	  <PackageReference Include="Xamarin.AndroidX.Collection">
+	    <Version>1.4.2</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.AndroidX.Collection.Ktx">
+	    <Version>1.4.2</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.AndroidX.Credentials">
+	    <Version>1.2.2.4</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.AndroidX.Credentials.PlayServicesAuth">
+	    <Version>1.2.2.4</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx">
+	    <Version>1.8.2</Version>
+	  </PackageReference>
+	</ItemGroup>
+
 </Project>

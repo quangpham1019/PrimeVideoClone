@@ -6,6 +6,7 @@ using APV.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using APV.Plugins.DataStore.WebAPI.Tmdb;
+using APV.Services.Auth;
 
 namespace APV
 {
@@ -40,6 +41,7 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieDetailsUseCase, GetMovieDetailsUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetGenresUseCase, GetGenresUseCase>();
+            mauiAppBuilder.Services.AddSingleton<IGoogleAuthService, Platforms.Android.GoogleAuthService>();
 
             mauiAppBuilder.Services.AddHttpClient(APVTmdbRepository.TmdbHttpClientName,
     httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
