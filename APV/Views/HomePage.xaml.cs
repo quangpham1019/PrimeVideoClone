@@ -7,11 +7,34 @@ public partial class HomePage : ContentPage
     private readonly HomePageViewModel homePageViewModel;
     private double PrevScrollY { get; set; } = 0;
 
+   
     public HomePage(HomePageViewModel homePageViewModel)
     {
         InitializeComponent();
         BindingContext = homePageViewModel;
         this.homePageViewModel = homePageViewModel;
+
+        DisplayInfo currentDeviceDisplayInfo = DeviceDisplay.Current.MainDisplayInfo;
+
+        // TODO: add event handler to update deviceDisplayInfo when the app window is resized
+#if WINDOWS
+            homePageViewModel.DeviceDisplayInfo = new DisplayInfo(
+                Shell.Current.Window.Width,
+                Shell.Current.Window.Height * .7,
+                currentDeviceDisplayInfo.Density,
+                currentDeviceDisplayInfo.Orientation,
+                currentDeviceDisplayInfo.Rotation
+                );
+#endif
+
+#if !WINDOWS
+        homePageViewModel.DeviceDisplayInfo = new DisplayInfo(
+            Shell.Current.Window.Width,
+            Shell.Current.Window.Height * .3,
+            currentDeviceDisplayInfo.Density,
+            currentDeviceDisplayInfo.Orientation,
+            currentDeviceDisplayInfo.Rotation);
+#endif
     }
 
     protected override void OnAppearing()

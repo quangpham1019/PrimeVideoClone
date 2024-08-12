@@ -41,8 +41,9 @@ namespace APV
             mauiAppBuilder.Services.AddSingleton<IGetMovieListUseCase, GetMovieListUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetMovieDetailsUseCase, GetMovieDetailsUseCase>();
             mauiAppBuilder.Services.AddSingleton<IGetGenresUseCase, GetGenresUseCase>();
+#if ANDROID
             mauiAppBuilder.Services.AddSingleton<IGoogleAuthService, Platforms.Android.GoogleAuthService>();
-
+#endif
             mauiAppBuilder.Services.AddHttpClient(APVTmdbRepository.TmdbHttpClientName,
     httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
 

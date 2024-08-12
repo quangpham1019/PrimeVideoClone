@@ -47,28 +47,6 @@ namespace APV.ViewModels
             MovieCarousel = [];
             MovieCategories = Enum.GetValues(typeof(MovieCategory)).Cast<MovieCategory>().ToArray();
             Task.Run(InitializeHomePageMovieData);
-
-            DisplayInfo currentDeviceDisplayInfo = DeviceDisplay.Current.MainDisplayInfo;
-
-            // TODO: add event handler to update deviceDisplayInfo when the app window is resized
-#if WINDOWS
-            deviceDisplayInfo = new DisplayInfo(
-                Shell.Current.Window.Width,
-                Shell.Current.Window.Height * .7,
-                currentDeviceDisplayInfo.Density,
-                currentDeviceDisplayInfo.Orientation,
-                currentDeviceDisplayInfo.Rotation
-                );
-#endif
-
-#if !WINDOWS
-            deviceDisplayInfo = new DisplayInfo(
-                Shell.Current.Window.Width,
-                Shell.Current.Window.Height * .3,
-                currentDeviceDisplayInfo.Density,
-                currentDeviceDisplayInfo.Orientation,
-                currentDeviceDisplayInfo.Rotation);
-#endif
         }
 
 
