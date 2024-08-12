@@ -1,6 +1,8 @@
 ﻿using APV.CoreBusiness;
+using APV.Services.Auth;
 using APV.UseCases.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace APV.ViewModels
@@ -9,6 +11,7 @@ namespace APV.ViewModels
     {
         public readonly IGetMovieListUseCase getMovieListUseCase;
         public readonly IGetGenresUseCase getGenresUseCase;
+        private readonly IGoogleAuthService googleAuthService;
 
         MovieCategory[] MovieCategories { get; set; }
 
@@ -27,11 +30,12 @@ namespace APV.ViewModels
 
         public HomePageViewModel(
             IGetMovieListUseCase getMovieListUseCase,
-            IGetGenresUseCase getGenresUseCase)
+            IGetGenresUseCase getGenresUseCase,
+            IGoogleAuthService googleAuthService)
         {
             this.getMovieListUseCase = getMovieListUseCase;
             this.getGenresUseCase = getGenresUseCase;
-
+            this.googleAuthService = googleAuthService;
             MovieRowList = [];
             MovieCarousel = [];
             MovieCategories = Enum.GetValues(typeof(MovieCategory)).Cast<MovieCategory>().ToArray();
@@ -167,6 +171,18 @@ namespace APV.ViewModels
             }
         }
 
-        
+        [RelayCommand]
+        public async void LoginWithGoogle()
+        {
+            var currentUser = await googleAuthService.AuthenticateAsync();
+
+            if (currentUser != null)
+            {
+
+            }
+                //Application.Current.MainPage = new NavigationPage(new ProfilePage(_googleAuthService, currentUser));
+
+
+        }
     }
 }
