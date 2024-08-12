@@ -115,10 +115,28 @@
                                        HorizontalOptions="End"
                                        Spacing="5">
                     <Label Text="Cast" FontAttributes="Bold" TextColor="White"></Label>
-                    <Label Text="RemoveAds" FontAttributes="Bold" TextColor="White"></Label>
-                    <Label Text="Account" FontAttributes="Bold" TextColor="White" BackgroundColor="Blue">
+                    <Label Text="RemoveAds" FontAttributes="Bold" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label x:Name="accountBtn" 
+                           Text="Account" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           BackgroundColor="Blue">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LoginWithGoogleCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="accountLogoBtn" 
+                           Text="{Binding CurrentUser.UserName}" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           BackgroundColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>

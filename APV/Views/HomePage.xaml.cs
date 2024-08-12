@@ -14,6 +14,22 @@ public partial class HomePage : ContentPage
         this.homePageViewModel = homePageViewModel;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (homePageViewModel.CurrentUser is null)
+        {
+            accountBtn.IsVisible = true;
+            accountLogoBtn.IsVisible = false;
+        }
+        else
+        {
+            accountBtn.IsVisible = false;
+            accountLogoBtn.IsVisible = true;
+        }
+    }
+
     private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
     {
 

@@ -1,4 +1,5 @@
 using APV.CoreBusiness;
+using APV.Services.Auth;
 using APV.UseCases.Interfaces;
 using APV.ViewModels;
 using NSubstitute;
@@ -26,8 +27,8 @@ namespace APV.UnitTest
             // Arrange
             IGetMovieListUseCase getMovieListUseCase = Substitute.For<IGetMovieListUseCase>();
             IGetGenresUseCase getGenresUseCase = Substitute.For<IGetGenresUseCase>();
-
-            HomePageViewModel viewModel = new HomePageViewModel(getMovieListUseCase, getGenresUseCase);
+            IGoogleAuthService googleAuthService = Substitute.For<IGoogleAuthService>();
+            HomePageViewModel viewModel = new HomePageViewModel(getMovieListUseCase, getGenresUseCase, googleAuthService);
 
             MovieCategory[] movieCategories = Enum.GetValues(typeof(MovieCategory)).Cast<MovieCategory>().ToArray();
             int numOfMovieCategory = movieCategories.Length;
@@ -76,6 +77,7 @@ namespace APV.UnitTest
             // Arrange
             var getMovieListUseCase = Substitute.For<IGetMovieListUseCase>();
             var getGenresUseCase = Substitute.For<IGetGenresUseCase>();
+            var googleAuthService = Substitute.For<IGoogleAuthService>();
 
             List<Genre> genres = new()
             {
@@ -85,7 +87,7 @@ namespace APV.UnitTest
             };
             getGenresUseCase.ExecuteAsync().Returns(Task.FromResult(genres));
 
-            HomePageViewModel viewModel = new HomePageViewModel(getMovieListUseCase, getGenresUseCase);
+            HomePageViewModel viewModel = new HomePageViewModel(getMovieListUseCase, getGenresUseCase, googleAuthService);
 
             for (int i = 0; i < genres.Count; i++)
             {

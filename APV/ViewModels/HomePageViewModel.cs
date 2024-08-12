@@ -1,6 +1,7 @@
 ﻿using APV.CoreBusiness;
 using APV.Services.Auth;
 using APV.UseCases.Interfaces;
+using APV.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -14,6 +15,12 @@ namespace APV.ViewModels
         private readonly IGoogleAuthService googleAuthService;
 
         MovieCategory[] MovieCategories { get; set; }
+
+        [ObservableProperty]
+        bool isAuthenticated;
+
+        [ObservableProperty]
+        UserDTO currentUser;
 
         [ObservableProperty]
         ObservableCollection<MovieRowViewModel> movieRowList;
@@ -174,15 +181,20 @@ namespace APV.ViewModels
         [RelayCommand]
         public async void LoginWithGoogle()
         {
-            var currentUser = await googleAuthService.AuthenticateAsync();
+            CurrentUser = await googleAuthService.AuthenticateAsync();
 
-            if (currentUser != null)
+            if (CurrentUser != null)
             {
-
+                await Shell.Current.GoToAsync(nameof(HomePage));
             }
-                //Application.Current.MainPage = new NavigationPage(new ProfilePage(_googleAuthService, currentUser));
+        }
 
-
+        [RelayCommand]
+        public async void Logout()
+        {
+            await googleAuthService.LogoutAsync();
+            CurrentUser = null;
+            await Shell.Current.GoToAsync(nameof(HomePage));
         }
     }
 }
