@@ -1,4 +1,5 @@
 ﻿using APV.ViewModels;
+using Assert = Xunit.Assert;
 
 namespace APV.UnitTest
 {

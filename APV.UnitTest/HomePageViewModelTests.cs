@@ -4,6 +4,7 @@ using APV.UseCases.Interfaces;
 using APV.ViewModels;
 using NSubstitute;
 using System.Collections.ObjectModel;
+using Assert = Xunit.Assert;
 
 namespace APV.UnitTest
 {
