@@ -1,6 +1,6 @@
 ﻿using Android.App;
 using Android.Gms.Auth.Api.SignIn;
-using APV.Services.Auth;
+using APV.UseCases.PluginInterfaces;
 using APV.CoreBusiness;
 
 namespace APV.Platforms.Android
@@ -54,7 +54,7 @@ namespace APV.Platforms.Android
                     UserName = e.Account.GivenName
                 });
             else
-                taskCompletionSource.SetException(new Exception("Error"));
+                taskCompletionSource.SetResult(null);
         }
 
         public async Task<UserDTO> GetCurrentUserAsync()
@@ -75,8 +75,11 @@ namespace APV.Platforms.Android
             {
                 throw new Exception("Error");
             }
+
         }
 
         public Task LogoutAsync() => googleSignInClient.SignOutAsync();
+
+        
     }
 }

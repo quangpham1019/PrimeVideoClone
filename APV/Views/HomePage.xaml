@@ -61,25 +61,6 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!--<BoxView VerticalOptions="Start"
-                 Grid.Row="0" 
-                 HeightRequest="30"
-                 BackgroundColor="Transparent">
-            <BoxView.Shadow>
-                <Shadow Brush="Black"
-                        Radius="20"
-                        Offset="0, 20"/>
-            </BoxView.Shadow>
-        </BoxView>-->
-        <!--<BoxView VerticalOptions="Start"
-                 Grid.Row="0" 
-                 HeightRequest="20">
-            <BoxView.Shadow>
-                <Shadow Brush="Red"
-                        Radius="40"
-                        Offset="0, 40"/>
-            </BoxView.Shadow>
-        </BoxView>-->
         <Frame VerticalOptions="Start"
                BorderColor="Transparent"
                Opacity=".8"

@@ -1,5 +1,5 @@
 using APV.CoreBusiness;
-using APV.Services.Auth;
+using APV.UseCases.PluginInterfaces;
 using APV.UseCases.Interfaces;
 using APV.ViewModels;
 using NSubstitute;

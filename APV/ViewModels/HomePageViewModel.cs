@@ -1,5 +1,5 @@
 ﻿using APV.CoreBusiness;
-using APV.Services.Auth;
+using APV.UseCases.PluginInterfaces;
 using APV.UseCases.Interfaces;
 using APV.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -159,12 +159,14 @@ namespace APV.ViewModels
         [RelayCommand]
         public async void LoginWithGoogle()
         {
+#if ANDROID
             CurrentUser = await googleAuthService.AuthenticateAsync();
 
             if (CurrentUser != null)
             {
                 await Shell.Current.GoToAsync(nameof(HomePage));
             }
+#endif
         }
 
         [RelayCommand]

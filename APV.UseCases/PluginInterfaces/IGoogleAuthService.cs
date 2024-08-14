@@ -1,6 +1,6 @@
 ﻿using APV.CoreBusiness;
 
-namespace APV.Services.Auth
+namespace APV.UseCases.PluginInterfaces
 {
     public interface IGoogleAuthService
     {
