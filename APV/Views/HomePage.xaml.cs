@@ -59,7 +59,7 @@ public partial class HomePage : ContentPage
         double curScrollY = e.ScrollY;
         bool menuIsVisible = label1.IsVisible;
 
-        if (Math.Abs(curScrollY - PrevScrollY) > 20)
+        if (Math.Abs(curScrollY - PrevScrollY) > 15)
         {
             // if scrolling down, curScrollY > prevScrollY && menu is visible
                 // hide menu, menu visible = false
@@ -69,11 +69,13 @@ public partial class HomePage : ContentPage
             {
                 label1.IsVisible = false;
                 label2.IsVisible = false;
+                menuShadow.IsVisible = false;
             }
             else if (curScrollY < PrevScrollY && menuIsVisible == false)
             {
                 label1.IsVisible = true;
                 label2.IsVisible = true;
+                menuShadow.IsVisible = true;
             }
         }
 

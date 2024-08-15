@@ -61,7 +61,8 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <Frame VerticalOptions="Start"
+        <Frame x:Name="menuShadow" 
+               VerticalOptions="Start"
                BorderColor="Transparent"
                Opacity=".8"
                HeightRequest="100">

@@ -14,30 +14,39 @@
 
 #### **Home Page**
 
-![](Images/HomePage_Unauthenticated.png)
-![](Images/HomePage_Unauthenticated_2.png)
-![](Images/HomePage_Login.png)
-![](Images/HomePage_Authenticated.png)
+<img src="Images/HomePage_Unauthenticated.png" height="400">
+<img src="Images/HomePage_Unauthenticated_2.png" height="400">
+<img src="Images/HomePage_Login.png" height="400">
+<img src="Images/HomePage_Authenticated.png" height="400">
 
 - Browsing through Homepage
-    ![](Images/APV_HomePageBrowsing.gif)
+
+    <img src="Images/APV_HomePageBrowsing.gif" height="400">
+  
 - Sticky menu appear/disappear on scroll
-    ![](Images/APV_FloatingMenuOption.gif)
+
+    <img src="Images/APV_FloatingMenuOption.gif" height="400">
+  
 - Movie Carousel
-    ![](Images/APV_MovieCarouselSwipe.gif)
+    
+    <img src="Images/APV_MovieCarouselSwipe.gif" height="400">
 
 #### **Movie Details Page**
 
-![](Images/MovieDetailsPage_1.png)
-![](Images/MovieDetailsPage_MoreDetails.png)
-![](Images/MovieDetailsPage_Related.png)
+<img src="Images/MovieDetailsPage_1.png" height="400">
+<img src="Images/MovieDetailsPage_MoreDetails.png" height="400">
+<img src="Images/MovieDetailsPage_Related.png" height="400">
 
 - Browsing through Movie Details page
-    ![](Images/APV_MovieDetailsBrowsing.gif)
 
-#### **Login**
+    <img src="Images/APV_MovieDetailsBrowsing.gif" height="400">
+
+#### **Authentication**
 
 - Logging in
-    ![](Images/APV_Login.gif)
+
+    <img src="Images/APV_Login.gif" height="400">
+
 - Logging out
-  - ![](Images/APV_Logout.gif)
+  
+    <img src="Images/APV_Logout.gif" height="400">
