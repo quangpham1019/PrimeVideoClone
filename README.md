@@ -4,6 +4,13 @@
 - Users can select a movie to view its details (overview, rating, runtime, etc.), as well as related movies.
 - Users can log in using their Google account.
 
+## **RESOURCES**
+
+- .NET MAUI, OAuth
+- Appium, xUnit, NUnit
+- Clean Architecture, MVVM
+- The Movie Database (Tmdb), Amazon Prime Video
+
 ## **IN THE UPCOMING RELEASES**
 
 - Update UI
