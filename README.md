@@ -14,10 +14,12 @@
 
 #### **Home Page**
 
-<img src="Images/HomePage_Unauthenticated.png" height="400">
-<img src="Images/HomePage_Unauthenticated_2.png" height="400">
-<img src="Images/HomePage_Login.png" height="400">
-<img src="Images/HomePage_Authenticated.png" height="400">
+<p float="left">
+  <img src="Images/HomePage_Unauthenticated.png" height="400">
+  <img src="Images/HomePage_Unauthenticated_2.png" height="400">
+  <img src="Images/HomePage_Login.png" height="400">
+  <img src="Images/HomePage_Authenticated.png" height="400">
+</p>
 
 - Browsing through Homepage
 
@@ -33,9 +35,11 @@
 
 #### **Movie Details Page**
 
-<img src="Images/MovieDetailsPage_1.png" height="400">
-<img src="Images/MovieDetailsPage_MoreDetails.png" height="400">
-<img src="Images/MovieDetailsPage_Related.png" height="400">
+<p float="left">
+  <img src="Images/MovieDetailsPage_1.png" height="400">
+  <img src="Images/MovieDetailsPage_MoreDetails.png" height="400">
+  <img src="Images/MovieDetailsPage_Related.png" height="400">
+</p>
 
 - Browsing through Movie Details page
 
