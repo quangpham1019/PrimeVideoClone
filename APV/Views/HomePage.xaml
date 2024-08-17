@@ -26,7 +26,16 @@
                 <CarouselView HeightRequest="{Binding DeviceDisplayInfo.Height}"
                               WidthRequest="{Binding DeviceDisplayInfo.Width}"
                               ItemsSource="{Binding MovieCarousel}"
-                              Margin="10">
+                              Margin="10"
+                              PeekAreaInsets="0"
+                              IndicatorView="indicatorView">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout
+                            ItemSpacing="0"
+                            Orientation="Horizontal"
+                            SnapPointsAlignment="Center"
+                            SnapPointsType="MandatorySingle"/>
+                    </CarouselView.ItemsLayout>
                     <CarouselView.ItemTemplate>
                         <DataTemplate x:DataType="models:Movie">
                             <VerticalStackLayout VerticalOptions="Center">
@@ -38,9 +47,16 @@
                             </VerticalStackLayout>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
-                </CarouselView> 
-            
+                </CarouselView>
+                
                 <!--TODO: Add carousel position indicator-->
+                <IndicatorView 
+                    x:Name="indicatorView"
+                    HorizontalOptions="Center"
+                    IndicatorColor="#616161"
+                    IndicatorSize="7"
+                    SelectedIndicatorColor="White"
+                    VerticalOptions="Center"/>
                 
                 <CollectionView ItemsSource="{Binding MovieRowList}"
                                 Margin="10">
@@ -150,5 +166,6 @@
                 </HorizontalStackLayout>
             </Grid>
         </Grid>
+
     </Grid>
 </ContentPage>
