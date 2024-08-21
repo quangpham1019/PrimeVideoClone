@@ -9,6 +9,7 @@ using PointerInputDevice = OpenQA.Selenium.Appium.Interactions.PointerInputDevic
 
 namespace AppiumIntegrationTest
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     public class AndroidBaseTest
     {
         protected AndroidDriver _driver;

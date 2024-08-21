@@ -5,7 +5,6 @@ using Assert = NUnit.Framework.Assert;
 
 namespace APV.Test
 {
-    [Parallelizable(ParallelScope.Self)]
     [TestFixture("14.0", "emulator-5554", 4723)]
     public class MovieDetailsPageTest : AndroidBaseTest
     {
