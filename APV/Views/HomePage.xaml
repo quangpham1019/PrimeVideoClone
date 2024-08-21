@@ -28,7 +28,8 @@
                               ItemsSource="{Binding MovieCarousel}"
                               Margin="10"
                               PeekAreaInsets="0"
-                              IndicatorView="indicatorView">
+                              IndicatorView="indicatorView"
+                              AutomationId="carouselView">
                     <CarouselView.ItemsLayout>
                         <LinearItemsLayout
                             ItemSpacing="0"
@@ -49,17 +50,18 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
                 
-                <!--TODO: Add carousel position indicator-->
                 <IndicatorView 
                     x:Name="indicatorView"
                     HorizontalOptions="Center"
                     IndicatorColor="#616161"
                     IndicatorSize="7"
                     SelectedIndicatorColor="White"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center"
+                    AutomationId="carouselViewIndicator"/>
                 
                 <CollectionView ItemsSource="{Binding MovieRowList}"
-                                Margin="10">
+                                Margin="10"
+                                AutomationId="movieRowCollectionView">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            ItemSpacing="5"/>
@@ -74,6 +76,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                
             </VerticalStackLayout>
         </ScrollView>
 
@@ -81,7 +84,8 @@
                VerticalOptions="Start"
                BorderColor="Transparent"
                Opacity=".8"
-               HeightRequest="100">
+               HeightRequest="100"
+               AutomationId="topMenuShadow">
             <Frame.Background>
                 <!-- StartPoint defaults to (0,0) -->
                 <LinearGradientBrush EndPoint="0,1">
@@ -98,14 +102,16 @@
               Grid.Row="0"
               HeightRequest="50"
               Margin="20,10,20,0"
-              RowDefinitions="*, *">
+              RowDefinitions="*, *"
+              AutomationId="topMenu">
 
             <!--TODO: Make dimension relative -->
             <!--TODO: Implement Icon for Logo, Cast, remove ads, account-->
             <!--TODO: Implement Navigation for Logo, Cast, remove ads, account-->
             <Grid Grid.Row="0"
                   ColumnDefinitions=".2, *"
-                  x:Name="label1">
+                  x:Name="label1"
+                  AutomationId="homePageNavigationBar">
                 <HorizontalStackLayout>
                     <Label Text="AVP Logo" FontAttributes="Bold" TextColor="White"></Label>
                 </HorizontalStackLayout>
@@ -123,7 +129,7 @@
                            Text="Account" 
                            FontAttributes="Bold" 
                            TextColor="White" 
-                           BackgroundColor="Blue">
+                           BackgroundColor="Green">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LoginWithGoogleCommand}" />
                         </Label.GestureRecognizers>
@@ -144,7 +150,8 @@
             <!--TODO: Implement changing content for All, Movies, TV Shows -->
             <!--TODO: Implement changing background color and text color on chosen -->
             <Grid Grid.Row="1"
-                  x:Name="label2">
+                  x:Name="label2"
+                  AutomationId="homePageItemFilter">
                 <HorizontalStackLayout HorizontalOptions="Start"
                                        Spacing="10">
                     <Border StrokeShape="RoundRectangle 40,40,40,40"
