@@ -32,8 +32,7 @@
                         <VerticalStackLayout>
                             <Image Aspect="AspectFill"
                                    HeightRequest="150"
-                                   WidthRequest="120"
-                                   >
+                                   WidthRequest="120">
                                 <Image.Source>
                                     <UriImageSource Uri="{Binding Thumbnail}"/>
                                 </Image.Source>
