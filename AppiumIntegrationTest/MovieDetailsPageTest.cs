@@ -8,57 +8,101 @@ namespace APV.Test
     [TestFixture("14.0", "emulator-5554", 4723)]
     public class MovieDetailsPageTest : AndroidBaseTest
     {
+        private readonly string homePage_movieRowCollectionViewId = "com.companyname.apv:id/movieRowCollectionView";
+        private readonly string homePage_movieRowCollectionView_movieRowClass = "androidx.recyclerview.widget.RecyclerView";
+        private readonly string homePage_movieRowCollectionView_movieRow_posterClass = "android.widget.ImageView";
+
+        private readonly string movieDetailsPage_scrollViewClassName = "android.widget.ScrollView";
+        private readonly string movieDetailsPage_backgroundImageId = "com.companyname.apv:id/backgroundImage";
+        private readonly string movieDetailsPage_overviewId = "com.companyname.apv:id/overview";
+        private readonly string movieDetailsPage_title = "com.companyname.apv:id/title";
+
+        private readonly string movieDetailsPage_relatedTabId = "com.companyname.apv:id/relatedTab";
+        private readonly string movieDetailsPage_relatedTabContentId = "com.companyname.apv:id/relatedTabContent";
+        private readonly string movieDetailsPage_moreDetailsTabId = "com.companyname.apv:id/moreDetailsTab";
+        private readonly string movieDetailsPage_moreDetailsTabContentId = "com.companyname.apv:id/moreDetailsTabContent";
+
+        //private readonly string Id = "";
+
+        private Interaction pressDown, releasePress, movePointerToScreenCenter;
         public MovieDetailsPageTest(string platformVersion, string avdUdid, int port) : base(platformVersion, avdUdid, port) { }
 
         [Test]
-        public void TestOnPosterClick()
+        [Order(0)]
+        public void SetUpVar()
         {
-            var godFather_poster_xPath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView[2]/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView";
-            var godFather_textOverview_xPath = "//android.widget.TextView[@text=\"Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.\"]";
-            var godFather_moreDetailsBtn_xPath = "//android.widget.TextView[@text=\"More Details\"]";
-            var godFather_relatedTab_randomRelatedMoviePoster_xPath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup/android.view.ViewGroup[15]/android.widget.ImageView";
-            var godFather_moreDetailsTab_starringLabel_xPath = "//android.widget.TextView[@text=\"Starring\"]";
 
-            var godFather_Poster = _driver.FindElement(MobileBy.XPath(godFather_poster_xPath));
-            godFather_Poster.Click();
+            movePointerToScreenCenter = pointerInputDevice.CreatePointerMove(CoordinateOrigin.Viewport, windowWidth / 2, windowHeight / 2, TimeSpan.FromSeconds(1));
+            pressDown = pointerInputDevice.CreatePointerDown(pointerButton);
+            releasePress = pointerInputDevice.CreatePointerUp(pointerButton);
+        }
 
-            var godFather_textOverview = _driver.FindElement(MobileBy.XPath(godFather_textOverview_xPath));
-            var godFather_moreDetailsBtn = _driver.FindElement(MobileBy.XPath(godFather_moreDetailsBtn_xPath));
+        [Test]
+        [Order(1)]
+        public void ClickOnPoster()
+        {
+            var movieRowCollectionView = _driver.FindElement(MobileBy.Id(homePage_movieRowCollectionViewId));
+            var movieRowCollectionView_movieRowList = movieRowCollectionView.FindElements(MobileBy.ClassName(homePage_movieRowCollectionView_movieRowClass));
+
+            var lastPoster = movieRowCollectionView_movieRowList[^1]
+                .FindElements(MobileBy.ClassName(homePage_movieRowCollectionView_movieRow_posterClass))
+                .Last();
+            lastPoster.Click();
+
+            var movieDetailsPage_scrollView = _driver.FindElement(MobileBy.ClassName(movieDetailsPage_scrollViewClassName));
+
+            var movieDetailsPage_overview = _driver.FindElement(MobileBy.Id(movieDetailsPage_overviewId));
+            var movieDetailsPage_moreDetailsTab = movieDetailsPage_scrollView.FindElement(MobileBy.Id(movieDetailsPage_moreDetailsTabId));
+            var movieDetailsPage_backgroundImage = _driver.FindElement(MobileBy.Id(movieDetailsPage_backgroundImageId));
 
             Assert.Multiple(() =>
             {
-                Assert.That(godFather_textOverview.Displayed, Is.True);
-                Assert.That(godFather_moreDetailsBtn.Displayed, Is.True);
+                Assert.That(movieDetailsPage_overview.Displayed, Is.True);
+                Assert.That(movieDetailsPage_moreDetailsTab.Displayed, Is.True);
+                Assert.That(movieDetailsPage_backgroundImage.Displayed, Is.True);
+
             });
 
 
-            var calibrateCoordinate = pointerInputDevice.CreatePointerMove(CoordinateOrigin.Viewport, windowWidth / 2, 1600, TimeSpan.Zero);
-            var pressDown = pointerInputDevice.CreatePointerDown(pointerButton);
-            var releasePress = pointerInputDevice.CreatePointerUp(pointerButton);
+            PerformScroll(0, -windowHeight, 2);
 
-            var swipeVertical = pointerInputDevice.CreatePointerMove(CoordinateOrigin.Pointer, 0, -windowHeight, TimeSpan.FromSeconds(2));
-            ActionBuilder swipeDownToComedyGenre = new ActionBuilder()
-                .AddActions(calibrateCoordinate, pressDown, swipeVertical, releasePress);
-            _driver.PerformActions(swipeDownToComedyGenre.ToActionSequenceList());
+            PseudoTap(movieDetailsPage_moreDetailsTab, 1);
+        }
 
-            var godFather_relatedTab_randomRelatedMoviePoster = _driver.FindElement(MobileBy.XPath(godFather_relatedTab_randomRelatedMoviePoster_xPath));
-            Assert.Multiple(() =>
-            {
-                Assert.That(godFather_textOverview.Displayed, Is.True);
-                Assert.That(godFather_moreDetailsBtn.Displayed, Is.True);
-                Assert.That(godFather_relatedTab_randomRelatedMoviePoster.Displayed, Is.True);
-            });
+        [Test]
+        [Order(2)]
+        public void test2()
+        {
 
-            godFather_moreDetailsBtn = _driver.FindElement(MobileBy.XPath(godFather_moreDetailsBtn_xPath));
-            godFather_moreDetailsBtn.Click();
+        }
 
-            var godFather_moreDetailsTab_starringLabel = _driver.FindElement(MobileBy.XPath(godFather_moreDetailsTab_starringLabel_xPath));
-            Assert.Multiple(() =>
-            {
-                Assert.That(godFather_textOverview.Displayed, Is.True);
-                Assert.That(godFather_moreDetailsBtn.Displayed, Is.True);
-                Assert.That(godFather_moreDetailsTab_starringLabel.Displayed, Is.True);
-            });
+
+
+        [Test]
+        [Order(3)]
+        public void test3()
+        {
+
+        }
+
+        void PerformScroll(int distanceX, int distanceY, double seconds)
+        {
+            var mainAction = pointerInputDevice.CreatePointerMove(CoordinateOrigin.Pointer, distanceX, distanceY, TimeSpan.FromSeconds(seconds));
+            ActionBuilder quickSwipeUp = new ActionBuilder().AddActions(
+                movePointerToScreenCenter,
+                pressDown,
+                mainAction,
+                releasePress);
+            _driver.PerformActions(quickSwipeUp.ToActionSequenceList());
+        }
+        void PseudoTap(AppiumElement element, double seconds)
+        {
+            var moveToElement = pointerInputDevice.CreatePointerMove(element, 0, 0, TimeSpan.FromSeconds(seconds));
+            ActionBuilder pseudoTap = new ActionBuilder().AddActions(
+                moveToElement,
+                pressDown,
+                releasePress);
+            _driver.PerformActions(pseudoTap.ToActionSequenceList());
         }
     }
 }

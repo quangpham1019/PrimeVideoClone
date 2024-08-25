@@ -6,6 +6,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Interactions;
 
 using PointerInputDevice = OpenQA.Selenium.Appium.Interactions.PointerInputDevice;
+using OpenQA.Selenium.Support.UI;
 
 namespace AppiumIntegrationTest
 {
@@ -13,6 +14,7 @@ namespace AppiumIntegrationTest
     public class AndroidBaseTest
     {
         protected AndroidDriver _driver;
+        protected WebDriverWait _driverWait;
         protected AppiumOptions driverOptions;
         protected AppiumLocalService appiumLocalServer;
 
@@ -73,6 +75,7 @@ namespace AppiumIntegrationTest
         {
             _driver = new AndroidDriver(appiumLocalServer.ServiceUrl, driverOptions, TimeSpan.FromSeconds(180));
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            _driverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
     }
 }
