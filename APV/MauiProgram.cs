@@ -6,6 +6,8 @@ using APV.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using APV.Plugins.DataStore.WebAPI.Tmdb;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace APV
 {
@@ -14,6 +16,16 @@ namespace APV
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            var assembly = Assembly.GetExecutingAssembly();
+            using var stream = assembly.GetManifestResourceStream("APV.appsettings.json");
+
+            var config = new ConfigurationBuilder()
+                .AddJsonStream(stream)
+                .Build();
+
+            builder.Configuration.AddConfiguration(config);
+
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()

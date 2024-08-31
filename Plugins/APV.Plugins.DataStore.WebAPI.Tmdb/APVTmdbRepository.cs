@@ -2,18 +2,23 @@
 using APV.UseCases.PluginInterfaces;
 using APV.Plugins.DataStore.WebAPI.Tmdb.Models;
 using System.Net.Http.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace APV.Plugins.DataStore.WebAPI.Tmdb
 {
     public class APVTmdbRepository : IMovieRepository
     {
-        private const string ApiKey = "dca2ff96db192826899015a3a5817827";
+        private static string ApiKey;
         public const string TmdbHttpClientName = "TmdbClient";
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+
         private HttpClient HttpClient => _httpClientFactory.CreateClient(TmdbHttpClientName);
         private Dictionary<MovieCategory, object> UrlByCategory { get; set; }
 
-        public APVTmdbRepository(IHttpClientFactory httpClientFactory)
+        public APVTmdbRepository(
+            IHttpClientFactory httpClientFactory,
+            IConfiguration configuration)
         {
             // Initialize UrlByCategory dict
             // Top Rated, Popular, Upcoming, etc.
@@ -23,6 +28,8 @@ namespace APV.Plugins.DataStore.WebAPI.Tmdb
                 {MovieCategory.TopRated, TmdbURLs.GetTopRated }
             };
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            ApiKey = _configuration["TMDB_KEY"];
         }
 
         public async Task<MovieDetails> GetMovieById(int movieId)

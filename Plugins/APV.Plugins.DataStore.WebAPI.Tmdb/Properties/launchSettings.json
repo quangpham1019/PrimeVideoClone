@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "APV.Plugins.DataStore.WebAPI.Tmdb": {
+      "commandName": "Project"
+    }
+  }
+}
